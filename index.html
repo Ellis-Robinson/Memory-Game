@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Memory Game</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	 crossorigin="anonymous">
+     <script src="assets/js/jquery-3.6.0.js"></script>
+	<link href="assets/css/stye.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<!--top section with three buttons-->
+	<div class="row function-buttons">
+		<div class="col-4 center">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Rules
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Rules of the game</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           When the game starts you will see the squares light up in a sequence. You must then match the correct sequence. Each round the sequence will get progressivly longer. you are allowed a maximum of 3 attempts at each round. Have fun!
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+        <div class="col-4 center">
+          <button type="button" class="btn btn-primary">PLAY!</button>
+        </div>
+        <div class="col-4 center">
+          <button type="button" class="btn btn-primary">Difficulty: <br> <span>Easy</span> </button>
+        </div>
+    </div>
+    <!--main game section with game squares-->
+    <div class="game-area">
+    <!--easy mode config-->
+        <div class="row game-rows">
+            <div class="col-6 center">
+                <div id="gs1" class="game-square blue">
+                </div>
+            </div>
+            <div class="col-6 center">
+                <div id="gs2" class="game-square blue">
+                </div>
+            </div>
+        </div>
+        <div class="row game-rows">
+            <div class="col-6 center">
+                <div id="gs3" class="game-square blue">
+                </div>
+            </div>
+            <div class="col-6 center">
+                <div id="gs4" class="game-square blue">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--bottom section with round and highscore-->
+    <div>
+        <div class="center">
+            <h4>Round:<span></span></h4>
+        </div>
+        <div class="center">
+            <h4>High Score:<span></span></h4>
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
