@@ -1,4 +1,7 @@
 /*general*/
+body {
+  background-image: url();
+}
 .center {
     display: flex;
     justify-content: center;
@@ -24,6 +27,8 @@
   .game-square {
     width: 140px;
     height: 140px;
+    border-radius: 10%;
+    border: outset 7px rgb(2 107 149);
   }
   .blue {
       background-color: rgb(0 51 76);

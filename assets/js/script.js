@@ -7,12 +7,19 @@ function startGame() {
 //generates an array of 4 random numbers 
 function createSequence() {
     let sequence = [];
-    
-    for (let i = 0; i <= 3; i++) {
-        let randomNum = Math.floor(Math.random()*4 + 1)
-        sequence.push(randomNum);
+
+    for ( let i = 0; i <= 4; i++) {
+
+        let randomNums = Math.floor(Math.random()*4 + 1)
+
+        sequence.push(randomNums);
     }
+
     console.log(sequence);
+
+        for ( let i = 0; i <= 4; i++) {
+            console.log(document.getElementById(sequence[i]).innerText);
+        }
 }
 
 function runSequence() {
