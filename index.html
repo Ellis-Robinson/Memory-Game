@@ -39,7 +39,7 @@
             </div>
 		</div>
         <div class="col-4 center">
-          <button onclick="createSequence()" type="button" class="btn btn-primary">PLAY!</button>
+          <button id="start-btn" type="button" class="btn btn-primary">PLAY!</button>
         </div>
         <div class="col-4 center">
           <button type="button" class="btn btn-primary">Difficulty: <br> <span>Easy</span> </button>
@@ -50,26 +50,18 @@
     <!--easy mode config-->
         <div class="row game-rows">
             <div class="col-6 center">
-                <div id="1" class="game-square blue">
-                    1
-                </div>
+                <div id="game-square-1" data-square="1" class="game-square blue"></div>
             </div>
             <div class="col-6 center">
-                <div id="2" class="game-square blue">
-                    2
-                </div>
+                <div id="game-square-2" data-square="2" class="game-square blue"></div>
             </div>
         </div>
         <div class="row game-rows">
             <div class="col-6 center">
-                <div id="3" class="game-square blue">
-                    3
-                </div>
+                <div id="game-square-3" data-square="3" class="game-square blue"></div>
             </div>
             <div class="col-6 center">
-                <div id="4" class="game-square blue">
-                    4
-                </div>
+                <div id="game-square-4" data-square="4" class="game-square blue"></div>
             </div>
         </div>
     </div>
