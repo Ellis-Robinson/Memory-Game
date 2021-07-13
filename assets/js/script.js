@@ -1,6 +1,7 @@
 // To do list
 // - replace all alerts with modals or animation of some sort 
 // - add animation for correct/incorrect/life removal.
+// - add reset highscore
 
 let gameSequence = [];
 
@@ -19,6 +20,12 @@ const lives = document.querySelector("#lives");
 
 // starts game
 function startGame() {
+
+    playerSequence = [];
+    gameSequence = [];
+    currentRound.innerHTML = 0;
+    lives.innerHTML = 3;
+
     createSequence();
     flashSequence();
 }
@@ -38,11 +45,6 @@ function flashSequence() {
 
 //clears player and game sequence. generates an array of random numbers between 1 and max square length 
 function createSequence() {
-
-    playerSequence = [];
-    gameSequence = [];
-    currentRound.innerHTML = 0;
-    lives.innerHTML = 3;
 
     for (let i = 0; i < 3; i++) {
         //gameSquare.length + 1 accounts for Math.floor rouding the number down
@@ -84,24 +86,21 @@ function checkSequences() {
         if (playerSequence.toString() === gameSequence.toString()) {
             //increments round and shows the next incrememnted sequence
             console.log("correct!");
-            alert("well done!");
+            flashWellDone();
             incrementRound();
             flashSequence();
             playerSequence = [];
         } else {
             //removes one life, clears players sequence and replays game sequence
             if (lives.innerHTML > 0) {
-                alert("not quite mate, try again..")
+                flashTryAgain();
                 playerSequence = [];
                 decrementLives();
                 flashSequence();
             }else {
                 //resets players sequence and round score. starts new game
                 console.log("incorrect!");
-                alert("you suck dude")
-                playerSequence = [];
-                currentRound.innerHTML = 0
-                startGame();
+                clickPlayAgainButton();
             }
         }
     }
@@ -119,13 +118,46 @@ function incrementRound() {
    }
    incrementSequence();
 }
-
+//incements high score
 function incrememntHighScore() {
     hightScore.innerHTML++
 }
-
+//decrements lives
 function decrementLives () {
     lives.innerHTML--
+}
+//flashes well done message
+function flashWellDone () {
+    let wellDone = document.querySelector("#well-done-announcemet");
+    wellDone.className = "announcement-content";
+        setTimeout(function(){
+          wellDone.className = "hidden";
+        }, 1000);
+}
+//flashed try again message
+function flashTryAgain () {
+    let tryAgain = document.querySelector("#try-again-announcemet");
+    tryAgain.className = "announcement-content";
+        setTimeout(function(){
+            tryAgain.className = "hidden";
+        }, 1000);
+}
+//flashes play again message
+function flashPlayAgain () {
+    let playAgain = document.querySelector("#play-again-announcemet");
+    playAgain.className = "announcement-content";
+        setTimeout(function(){
+            playAgain.className = "hidden";
+        }, 1000);
+}
+
+function clickPlayAgainButton () {
+    document.querySelector("#play-again-hidden-btn").click()
+}
+
+function clearStats () {
+    currentRound.innerHTML = 0;
+    lives.innerHTML = 3;
 }
 
 
@@ -135,6 +167,12 @@ function decrementLives () {
 //listening for if start button is clicked
 document.querySelector("#start-btn").addEventListener("click", startGame);
 
+//if play again button is clicked game will start again
+document.querySelector("#play-again-modal-btn").addEventListener("click", startGame);
+
+document.querySelector("#no-thanks-modal-btn").addEventListener("click", clearStats);
+
+
 //listening for if game square is clicked
 for(let i = 0; i < gameSquare.length; i++){
     gameSquare[i].addEventListener("click", function() {
@@ -143,4 +181,3 @@ for(let i = 0; i < gameSquare.length; i++){
         checkSequences();
         });
 }
-

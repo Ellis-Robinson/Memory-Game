@@ -15,8 +15,8 @@
 	<!--top section with three buttons-->
 	<div class="row function-buttons">
 		<div class="col-4 center">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <!-- Rule Button to trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Rules
             </button>
 
@@ -38,15 +38,53 @@
                 </div>
             </div>
 		</div>
+
         <div class="col-4 center">
           <button id="start-btn" type="button" class="btn btn-primary">PLAY!</button>
+          <!--hidden play again button-->
+          <button id="play-again-hidden-btn"type="button" class="btn btn-primary hidden" data-bs-toggle="modal" data-bs-target="#play-again-modal" aria-hidden="true">
+            Play again
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="play-again-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">You're out of lives</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           Would you like to play again?
+                        </div>
+                        <div class="modal-footer">
+                            <button id="play-again-modal-btn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Play again</button>
+                            <button id="no-thanks-modal-btn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No Thanks</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div class="col-4 center">
           <button type="button" class="btn btn-primary">Difficulty: <br> <span>Easy</span> </button>
         </div>
+        
     </div>
     <!--main game section with game squares-->
     <div class="game-area">
+    <!--announcments (hidden untill called in script.js)-->
+        <div class="announcement">
+            <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
+        </div>
+
+        <div class="announcement">
+            <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
+        </div>
+
+        <div class="announcement">
+            <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
+        </div>
     <!--easy mode config-->
         <div class="row game-rows">
             <div class="col-6 center">
