@@ -29,7 +29,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                           When the game starts you will see the squares light up in a sequence. You must then match the correct sequence. Each round the sequence will get progressivly longer. you are allowed a maximum of 3 attempts at each round. Have fun!
+                           When the game starts you will see the squares light up in a sequence. You must then match the correct sequence. Each round the sequence will get progressivly longer. You have three lives, if you get a sequence wrong you lose a life and it shows you the sequence again. Have fun!
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -68,10 +68,13 @@
     <!--bottom section with round and highscore-->
     <div>
         <div class="center">
-            <h4>Round:<span></span></h4>
+            <h4>Round: <span id="currentRound">0</span></h4>
         </div>
         <div class="center">
-            <h4>High Score:<span></span></h4>
+            <h4>High Score: <span id="hightScore">0</span></h4>
+        </div>
+        <div class="center">
+            <h4>Lives Left: <span id="lives">3</span></h4>
         </div>
     </div>
     <script src="assets/js/script.js"></script>

@@ -1,8 +1,21 @@
+// To do list
+// - replace all alerts with modals or animation of some sort 
+// - add animation for correct/incorrect/life removal.
+
 let gameSequence = [];
 
 let playerSequence = [];
 
-const gameSquare = document.getElementsByClassName("game-square");
+const gameSquare = document.querySelectorAll(".game-square");
+
+const currentRound = document.querySelector("#currentRound");
+
+const highScore = document.querySelector("#hightScore");
+
+const lives = document.querySelector("#lives");
+
+
+//-----------------functions----------------------------
 
 // starts game
 function startGame() {
@@ -15,7 +28,9 @@ function flashSequence() {
     
     for (let i = 0; i < gameSequence.length; i++) {
         setTimeout(function(){
+            //-1 corrects sequence of flashes
             flashSquare(gameSequence[i]-1)
+            //+1 delays start time by 1 second
         }, 1000*(i+1));
       }
     
@@ -26,9 +41,11 @@ function createSequence() {
 
     playerSequence = [];
     gameSequence = [];
+    currentRound.innerHTML = 0;
+    lives.innerHTML = 3;
 
-    for (let i = 0; i < 5; i++) {
-
+    for (let i = 0; i < 3; i++) {
+        //gameSquare.length + 1 accounts for Math.floor rouding the number down
         let randomNums = Math.floor(Math.random() * gameSquare.length + 1)
 
         gameSequence.push(randomNums);
@@ -36,6 +53,12 @@ function createSequence() {
 
     console.log(gameSequence);
 
+}
+// generates 1 random number between 1 and max number of game squares, adds to current sequence.
+function incrementSequence() {
+    let randomNum = Math.floor(Math.random() * gameSquare.length + 1)
+    gameSequence.push(randomNum);
+    console.log(gameSequence);
 }
 
 //flashes selected square
@@ -53,6 +76,62 @@ function createPlayerSequence(i) {
     console.log(playerSequence);
 }
 
+//if player sequence length is the same as game sequence length compare both, then clear player sequence
+function checkSequences() {
+
+    if (playerSequence.length === gameSequence.length) {
+        console.log("sequences same length");
+        if (playerSequence.toString() === gameSequence.toString()) {
+            //increments round and shows the next incrememnted sequence
+            console.log("correct!");
+            alert("well done!");
+            incrementRound();
+            flashSequence();
+            playerSequence = [];
+        } else {
+            //removes one life, clears players sequence and replays game sequence
+            if (lives.innerHTML > 0) {
+                alert("not quite mate, try again..")
+                playerSequence = [];
+                decrementLives();
+                flashSequence();
+            }else {
+                //resets players sequence and round score. starts new game
+                console.log("incorrect!");
+                alert("you suck dude")
+                playerSequence = [];
+                currentRound.innerHTML = 0
+                startGame();
+            }
+        }
+    }
+    
+    if (playerSequence.length < gameSequence.length) {
+        console.log("click more squares");
+    }
+}
+
+//increment current round by 1 and calls incrememntSequence
+function incrementRound() {
+   currentRound.innerHTML++
+   if (currentRound.innerHTML > highScore.innerHTML) {
+       incrememntHighScore();
+   }
+   incrementSequence();
+}
+
+function incrememntHighScore() {
+    hightScore.innerHTML++
+}
+
+function decrementLives () {
+    lives.innerHTML--
+}
+
+
+//-------------runable code--------------------------
+
+
 //listening for if start button is clicked
 document.querySelector("#start-btn").addEventListener("click", startGame);
 
@@ -65,20 +144,3 @@ for(let i = 0; i < gameSquare.length; i++){
         });
 }
 
-//if player sequence length is the same as game sequence length compare both, then clear player sequence
-function checkSequences() {
-    if (gameSequence.length === 0) {
-        console.log("press start");
-    }else if (playerSequence.length === gameSequence.length) {
-        console.log("sequences same length");
-        if (playerSequence.toString() === gameSequence.toString()) {
-            console.log("correct!");
-            playerSequence = [];
-        } else {
-            console.log("incorrect!");
-            playerSequence = [];
-        }
-    } else if (playerSequence.length < gameSequence.length) {
-        console.log("click more squares");
-    }
-}
