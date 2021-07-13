@@ -30,19 +30,6 @@ function startGame() {
     flashSequence();
 }
 
-//targets game squares and flashes them in order of game sequence
-function flashSequence() {
-    
-    for (let i = 0; i < gameSequence.length; i++) {
-        setTimeout(function(){
-            //-1 corrects sequence of flashes
-            flashSquare(gameSequence[i]-1)
-            //+1 delays start time by 1 second
-        }, 1000*(i+1));
-      }
-    
-}
-
 //clears player and game sequence. generates an array of random numbers between 1 and max square length 
 function createSequence() {
 
@@ -56,6 +43,27 @@ function createSequence() {
     console.log(gameSequence);
 
 }
+
+//targets game squares and flashes them in order of game sequence
+function flashSequence() {
+
+    for (let i = 0; i < gameSequence.length; i++) {
+
+        let flashSequenceTimeOut = setTimeout(function(){
+            //-1 corrects sequence of flashes
+            flashSquare(gameSequence[i]-1)
+            //+1 delays start time by 1 second
+        }, 1000*(i+1));
+
+        flashSequenceTimeOut;
+        //allows for reset button to stop sequence on click
+        document.querySelector("#reset-button").addEventListener("click", function() {
+            clearTimeout(flashSequenceTimeOut);
+        });
+      }
+      
+}
+
 // generates 1 random number between 1 and max number of game squares, adds to current sequence.
 function incrementSequence() {
     let randomNum = Math.floor(Math.random() * gameSquare.length + 1)
@@ -65,7 +73,7 @@ function incrementSequence() {
 
 //flashes selected square
 function flashSquare(i) {
-        gameSquare[i].className = "game-square red";
+        gameSquare[i].className += " flash";
         setTimeout(function(){
            gameSquare[i].className = "game-square blue";
         }, 150);
@@ -116,11 +124,18 @@ function incrementRound() {
    if (currentRound.innerHTML > highScore.innerHTML) {
        incrememntHighScore();
    }
+   incrementLives();
    incrementSequence();
 }
 //incements high score
 function incrememntHighScore() {
     hightScore.innerHTML++
+}
+//increments lives if player reaches round 5 and 10
+function incrementLives () {
+    if (currentRound.innerHTML === "5" || currentRound.innerHTML === "10" ) {
+        lives.innerHTML++;
+    }
 }
 //decrements lives
 function decrementLives () {
@@ -142,26 +157,19 @@ function flashTryAgain () {
             tryAgain.className = "hidden";
         }, 1000);
 }
-//flashes play again message
-function flashPlayAgain () {
-    let playAgain = document.querySelector("#play-again-announcemet");
-    playAgain.className = "announcement-content";
-        setTimeout(function(){
-            playAgain.className = "hidden";
-        }, 1000);
-}
 
 function clickPlayAgainButton () {
     document.querySelector("#play-again-hidden-btn").click()
 }
 
 function clearStats () {
+    gameSequence = []
     currentRound.innerHTML = 0;
     lives.innerHTML = 3;
 }
 
 
-//-------------runable code--------------------------
+//------------------------event listeners----------------
 
 
 //listening for if start button is clicked
@@ -170,8 +178,9 @@ document.querySelector("#start-btn").addEventListener("click", startGame);
 //if play again button is clicked game will start again
 document.querySelector("#play-again-modal-btn").addEventListener("click", startGame);
 
+//clears stats 
 document.querySelector("#no-thanks-modal-btn").addEventListener("click", clearStats);
-
+document.querySelector("#reset-button").addEventListener("click", clearStats);
 
 //listening for if game square is clicked
 for(let i = 0; i < gameSquare.length; i++){
@@ -181,3 +190,7 @@ for(let i = 0; i < gameSquare.length; i++){
         checkSequences();
         });
 }
+
+
+    
+    

@@ -11,6 +11,8 @@ body {
 }
 
 /*----------------------function buttons section*/
+
+
 .function-buttons {
       margin: 20px 0px;
 }
@@ -37,8 +39,9 @@ body {
     background-color: rgb(0 51 76);
 }
 
-.red {
-  background-color: red;
+
+.flash {
+  box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.8) ;
 }
 
 .announcement {
