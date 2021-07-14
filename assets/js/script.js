@@ -2,6 +2,8 @@
 // - replace all alerts with modals or animation of some sort 
 // - add animation for correct/incorrect/life removal.
 // - add reset highscore (clear stats)
+// - add hard mode config
+// - fix welldone/tryagain
 
 let mainGameSection = document.querySelector("#main-game-section");
 
@@ -55,7 +57,7 @@ let gameSequence = [];
 
 let playerSequence = [];
 
-let gameSquare = document.querySelectorAll(".game-square");
+let gameSquare = [];
 
 const currentRound = document.querySelector("#currentRound");
 
@@ -231,10 +233,31 @@ function reset () {
 
 function changeDificulty () {
     document.querySelector("#difficulty-setting").innerHTML = this.innerHTML;
+
     if (this.innerHTML === "Medium"){
+        //creates new game section layout with 9 squares
         mainGameSection.innerHTML = mediumConfig;
+        gameSquare = document.querySelectorAll(".game-square")
+        for(let i = 0; i < gameSquare.length; i++){
+            gameSquare[i].addEventListener("click", function() {
+                flashSquare(i);
+                createPlayerSequence(i);
+                checkSequences();
+                });
+        }
+
     } else if ( this.innerHTML === "Easy") {
+        //creates new game section layout with 4 squares
         mainGameSection.innerHTML = easyConfig;
+        gameSquare = document.querySelectorAll(".game-square");
+        for(let i = 0; i < gameSquare.length; i++){
+            gameSquare[i].addEventListener("click", function() {
+                flashSquare(i);
+                createPlayerSequence(i);
+                checkSequences();
+                });
+        }
+        
     }
 }
 
@@ -255,7 +278,9 @@ document.querySelector("#play-again-modal-btn").addEventListener("click", startG
 document.querySelector("#no-thanks-modal-btn").addEventListener("click", reset);
 document.querySelector("#reset-button").addEventListener("click", reset);
 
-//listening for if game square is clicked
+// listening for if game square is clicked
+gameSquare = document.querySelectorAll(".game-square");
+
 for(let i = 0; i < gameSquare.length; i++){
     gameSquare[i].addEventListener("click", function() {
         flashSquare(i);

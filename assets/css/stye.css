@@ -3,6 +3,7 @@ body {
   background-image: url(https://github.com/Ellis-Robinson/Memory-Game/blob/main/assets/imgs/cloudsbg.jpg?raw=true);
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 .center {
   display: flex;
