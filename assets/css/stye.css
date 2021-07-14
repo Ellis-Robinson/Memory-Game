@@ -1,3 +1,7 @@
+/*To do list
+ - change background color of modal
+ */
+
 /*--------------------------------general*/
 body {
   background-image: url(https://github.com/Ellis-Robinson/Memory-Game/blob/main/assets/imgs/cloudsbg.jpg?raw=true);
@@ -46,7 +50,9 @@ body {
 
 
 .flash {
-  box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.8) ;
+  box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.8); 
+  background-color: rgb(67, 193, 225);
+  border-color: rgb(39, 143, 185);
 }
 
 .announcement {

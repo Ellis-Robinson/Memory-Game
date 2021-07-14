@@ -7,8 +7,29 @@
 
 let mainGameSection = document.querySelector("#main-game-section");
 
+let easyConfig = `<!--main game section, easy config-->
+<div id="game-area-easy" class="animate__animated animate__zoomIn">
+<!--announcments (hidden untill called in script.js)-->
+    <div class="announcement">
+        <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
+    </div>
+
+    <div class="announcement">
+        <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
+    </div>
+
+    <div class="announcement">
+        <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
+    </div>
+<!--game squares (easy)-->
+    <div id="game-square-1" data-square="1" class="game-square blue"></div>
+    <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
+    <div id="game-square-3" data-square="3" class="game-square blue"></div>
+    <div id="game-square-4" data-square="4" class="game-square blue"></div>
+</div>`
+
 let mediumConfig = `<!--main game section, medium config-->
-<div id="game-area-medium" class="slide-in-right">
+<div id="game-area-medium" class="animate__animated animate__zoomIn">
     <!--announcments (hidden untill called in script.js)-->
         <div class="announcement">
             <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
@@ -33,25 +54,38 @@ let mediumConfig = `<!--main game section, medium config-->
                 <div id="game-square-9" data-square="9" class="game-square blue"></div>
     </div>`;
 
-let easyConfig = `<div id="game-area-easy" class="slide-in-right">
-<!--announcments (hidden untill called in script.js)-->
-    <div class="announcement">
-        <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
-    </div>
+let hardConfig = `<!--main game section, hard config-->
+<div id="game-area-hard" class="animate__animated animate__zoomIn">
+    <!--announcments (hidden untill called in script.js)-->
+        <div class="announcement">
+            <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
+        </div>
 
-    <div class="announcement">
-        <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
-    </div>
+        <div class="announcement">
+            <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
+        </div>
 
-    <div class="announcement">
-        <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
-    </div>
-<!--game squares (easy)-->
-    <div id="game-square-1" data-square="1" class="game-square blue"></div>
-    <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
-    <div id="game-square-3" data-square="3" class="game-square blue"></div>
-    <div id="game-square-4" data-square="4" class="game-square blue"></div>
-</div>`
+        <div class="announcement">
+            <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
+        </div>
+    <!--game squares (hard)-->
+                <div id="game-square-1" data-square="1" class="game-square blue"></div>
+                <div id="game-square-2" data-square="2" class="game-square blue"></div>
+                <div id="game-square-3" data-square="3" class="game-square blue"></div> 
+                <div id="game-square-4" data-square="4" class="game-square blue"></div> <br>
+                <div id="game-square-5" data-square="5" class="game-square blue"></div>
+                <div id="game-square-6" data-square="6" class="game-square blue"></div> 
+                <div id="game-square-7" data-square="7" class="game-square blue"></div>
+                <div id="game-square-8" data-square="8" class="game-square blue"></div> <br>
+                <div id="game-square-9" data-square="9" class="game-square blue"></div>
+                <div id="game-square-10" data-square="10" class="game-square blue"></div> 
+                <div id="game-square-11" data-square="11" class="game-square blue"></div>
+                <div id="game-square-12" data-square="12" class="game-square blue"></div> <br>
+                <div id="game-square-13" data-square="13" class="game-square blue"></div> 
+                <div id="game-square-14" data-square="14" class="game-square blue"></div>
+                <div id="game-square-15" data-square="15" class="game-square blue"></div>
+                <div id="game-square-16" data-square="16" class="game-square blue"></div>
+    </div>`
 
 let gameSequence = [];
 
@@ -165,9 +199,7 @@ function checkSequences() {
                 clickPlayAgainButton();
             }
         }
-    }
-    
-    if (playerSequence.length < gameSequence.length) {
+    } else if (playerSequence.length < gameSequence.length) {
         console.log("click more squares");
     }
 }
@@ -175,10 +207,13 @@ function checkSequences() {
 //increment current round by 1 and calls incrememntSequence
 function incrementRound() {
    currentRound.innerHTML++
+
    if (currentRound.innerHTML > highScore.innerHTML) {
        incrememntHighScore();
    }
+
    incrementLives();
+
    incrementSequence();
 }
 //incements high score
@@ -211,53 +246,47 @@ function flashTryAgain () {
             tryAgain.className = "hidden";
         }, 1000);
 }
-
+//bring up play again modal 
 function clickPlayAgainButton () {
     document.querySelector("#play-again-hidden-btn").click()
 }
-
+//resets game sequence/player sequence/round/lives
 function reset () {
     gameSequence = [];
     playerSequence = [];
     currentRound.innerHTML = 0;
     lives.innerHTML = 3;
 }
-
-// function slideOutLeft () {
-//     .className = "game-area slide-out-left";
-    
-// }
-// function slideInRight () {
-//     .className = "game-area slide-in-right";
-// }
-
+//reconfigurs game area for current difficulty
 function changeDificulty () {
     reset();
     document.querySelector("#difficulty-setting").innerHTML = this.innerHTML;
-    if (this.innerHTML === "Medium"){
-        //creates new game section layout with 9 squares
-        mainGameSection.innerHTML = mediumConfig;
-        gameSquare = document.querySelectorAll(".game-square")
-        for(let i = 0; i < gameSquare.length; i++){
-            gameSquare[i].addEventListener("click", function() {
-                flashSquare(i);
-                createPlayerSequence(i);
-                checkSequences();
-                });
-        }
-
-    } else if ( this.innerHTML === "Easy") {
+    if (this.innerHTML === "Easy"){
         //creates new game section layout with 4 squares
         mainGameSection.innerHTML = easyConfig;
-        gameSquare = document.querySelectorAll(".game-square");
-        for(let i = 0; i < gameSquare.length; i++){
-            gameSquare[i].addEventListener("click", function() {
-                flashSquare(i);
-                createPlayerSequence(i);
-                checkSequences();
-                });
-        }
+        gameSquareEventListener();
+
+    } else if ( this.innerHTML === "Medium") {
+        //creates new game section layout with 9 squares
+        mainGameSection.innerHTML = mediumConfig;
+        gameSquareEventListener(); 
         
+    } else if ( this.innerHTML === "Hard") {
+        //creates new game section layout with 16 squares
+        mainGameSection.innerHTML = hardConfig;
+        gameSquareEventListener();
+    }
+}
+//creates event hadler for current game squares
+function gameSquareEventListener () {
+    gameSquare = document.querySelectorAll(".game-square");
+
+    for(let i = 0; i < gameSquare.length; i++){
+        gameSquare[i].addEventListener("click", function() {
+            flashSquare(i);
+            createPlayerSequence(i);
+            checkSequences();
+            });
     }
 }
 
