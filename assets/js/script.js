@@ -232,8 +232,8 @@ function reset () {
 // }
 
 function changeDificulty () {
+    reset();
     document.querySelector("#difficulty-setting").innerHTML = this.innerHTML;
-
     if (this.innerHTML === "Medium"){
         //creates new game section layout with 9 squares
         mainGameSection.innerHTML = mediumConfig;
