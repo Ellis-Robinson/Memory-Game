@@ -71,40 +71,36 @@
           </div>
 
         <div class="col-3 center">
-          <button type="button" class="btn btn-primary">Difficulty: <br> <span>Easy</span> </button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Difficulty: <br> <span id="difficulty-setting">Easy</span> 
+            </button>
+            <ul id="difficulty-ul" class="dropdown-menu">
+                <li class="dropdown-item">Easy</span></li>
+                <li class="dropdown-item">Medium</span></li>
+                <li class="dropdown-item">Hard</span></li>
+            </ul>
         </div>
         
     </div>
-    <!--main game section with game squares-->
-    <div class="game-area">
-    <!--announcments (hidden untill called in script.js)-->
-        <div class="announcement">
-            <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
-        </div>
+    <!--main game section-->
+    <div id="main-game-section" class="game-area">
+        <div id="game-area-easy" class="slide-in-right">
+        <!--announcments (hidden untill called in script.js)-->
+            <div class="announcement">
+                <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
+            </div>
 
-        <div class="announcement">
-            <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
-        </div>
+            <div class="announcement">
+                <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
+            </div>
 
-        <div class="announcement">
-            <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
-        </div>
-    <!--easy mode config-->
-        <div class="row game-rows">
-            <div class="col-6 center">
-                <div id="game-square-1" data-square="1" class="game-square blue"></div>
+            <div class="announcement">
+                <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
             </div>
-            <div class="col-6 center">
-                <div id="game-square-2" data-square="2" class="game-square blue"></div>
-            </div>
-        </div>
-        <div class="row game-rows">
-            <div class="col-6 center">
-                <div id="game-square-3" data-square="3" class="game-square blue"></div>
-            </div>
-            <div class="col-6 center">
-                <div id="game-square-4" data-square="4" class="game-square blue"></div>
-            </div>
+        <!--game squares (easy)-->
+            <div id="game-square-1" data-square="1" class="game-square blue"></div>
+            <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
+            <div id="game-square-3" data-square="3" class="game-square blue"></div>
+            <div id="game-square-4" data-square="4" class="game-square blue"></div>
         </div>
     </div>
     <!--bottom section with round and highscore-->

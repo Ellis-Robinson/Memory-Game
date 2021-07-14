@@ -1,19 +1,71 @@
 // To do list
 // - replace all alerts with modals or animation of some sort 
 // - add animation for correct/incorrect/life removal.
-// - add reset highscore
+// - add reset highscore (clear stats)
+
+let mainGameSection = document.querySelector("#main-game-section");
+
+let mediumConfig = `<!--main game section, medium config-->
+<div id="game-area-medium" class="slide-in-right">
+    <!--announcments (hidden untill called in script.js)-->
+        <div class="announcement">
+            <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
+        </div>
+
+        <div class="announcement">
+            <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
+        </div>
+
+        <div class="announcement">
+            <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
+        </div>
+    <!--game squares (medium)-->
+                <div id="game-square-1" data-square="1" class="game-square blue"></div>
+                <div id="game-square-2" data-square="2" class="game-square blue"></div>
+                <div id="game-square-3" data-square="3" class="game-square blue"></div> <br>
+                <div id="game-square-4" data-square="4" class="game-square blue"></div>
+                <div id="game-square-5" data-square="5" class="game-square blue"></div>
+                <div id="game-square-6" data-square="6" class="game-square blue"></div> <br>
+                <div id="game-square-7" data-square="7" class="game-square blue"></div>
+                <div id="game-square-8" data-square="8" class="game-square blue"></div>
+                <div id="game-square-9" data-square="9" class="game-square blue"></div>
+    </div>`;
+
+let easyConfig = `<div id="game-area-easy" class="slide-in-right">
+<!--announcments (hidden untill called in script.js)-->
+    <div class="announcement">
+        <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
+    </div>
+
+    <div class="announcement">
+        <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
+    </div>
+
+    <div class="announcement">
+        <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
+    </div>
+<!--game squares (easy)-->
+    <div id="game-square-1" data-square="1" class="game-square blue"></div>
+    <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
+    <div id="game-square-3" data-square="3" class="game-square blue"></div>
+    <div id="game-square-4" data-square="4" class="game-square blue"></div>
+</div>`
 
 let gameSequence = [];
 
 let playerSequence = [];
 
-const gameSquare = document.querySelectorAll(".game-square");
+let gameSquare = document.querySelectorAll(".game-square");
 
 const currentRound = document.querySelector("#currentRound");
 
 const highScore = document.querySelector("#hightScore");
 
 const lives = document.querySelector("#lives");
+
+const gameArea = document.querySelector("#game-area-easy");
+
+const dificultyLevel = document.querySelector("#difficulty-ul");
 
 
 //-----------------functions----------------------------
@@ -162,15 +214,36 @@ function clickPlayAgainButton () {
     document.querySelector("#play-again-hidden-btn").click()
 }
 
-function clearStats () {
-    gameSequence = []
+function reset () {
+    gameSequence = [];
+    playerSequence = [];
     currentRound.innerHTML = 0;
     lives.innerHTML = 3;
+}
+
+// function slideOutLeft () {
+//     .className = "game-area slide-out-left";
+    
+// }
+// function slideInRight () {
+//     .className = "game-area slide-in-right";
+// }
+
+function changeDificulty () {
+    document.querySelector("#difficulty-setting").innerHTML = this.innerHTML;
+    if (this.innerHTML === "Medium"){
+        mainGameSection.innerHTML = mediumConfig;
+    } else if ( this.innerHTML === "Easy") {
+        mainGameSection.innerHTML = easyConfig;
+    }
 }
 
 
 //------------------------event listeners----------------
 
+//listen for which difficulty setting is clicked
+for(i = 0; i < dificultyLevel.children.length; i++)
+dificultyLevel.children[i].addEventListener("click", changeDificulty);
 
 //listening for if start button is clicked
 document.querySelector("#start-btn").addEventListener("click", startGame);
@@ -179,8 +252,8 @@ document.querySelector("#start-btn").addEventListener("click", startGame);
 document.querySelector("#play-again-modal-btn").addEventListener("click", startGame);
 
 //clears stats 
-document.querySelector("#no-thanks-modal-btn").addEventListener("click", clearStats);
-document.querySelector("#reset-button").addEventListener("click", clearStats);
+document.querySelector("#no-thanks-modal-btn").addEventListener("click", reset);
+document.querySelector("#reset-button").addEventListener("click", reset);
 
 //listening for if game square is clicked
 for(let i = 0; i < gameSquare.length; i++){
