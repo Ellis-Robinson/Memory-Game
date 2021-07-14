@@ -20,7 +20,9 @@ body {
 
 /*-----------------------------------game area*/
 .game-area {
-    height: 360px;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
     width: 90vw;
     border: dashed 1px;
     margin: 0 5%;
@@ -29,11 +31,13 @@ body {
   height: 50%;
 }
 .game-square {
+  display: inline-block;
   width: 140px;
   height: 140px;
   border-radius: 10%;
   border: outset 7px rgb(2 107 149);
   cursor: pointer;
+  margin: 5px;
 }
 .blue {
     background-color: rgb(0 51 76);
@@ -61,6 +65,21 @@ body {
     animation-name: shake;
 }
 
+.slide-in-right {
+  position: relative;
+  animation-duration: 1s;
+  animation-name: slide-in-right;
+}
+.slide-out-left {
+  position: relative;
+  right: 150vw;
+  animation-duration: 1s;
+  animation-name: slide-out-left
+  
+}
+
+/*--------------------animation keyframes*/
+
 @keyframes shake {
   from {transform: rotate(0deg);}
   
@@ -70,4 +89,24 @@ body {
   80% {transform: rotate(-5deg);}
   
   to {transform: rotate(0deg);}
+}
+
+@keyframes slide-in-right {
+  from {left: 100vw;
+  opacity: 0}
+
+  80% {left: -10vw;}
+  
+  to {left: 0;
+    opacity: 1;}
+}
+
+@keyframes slide-out-left {
+  from {
+    right: 0;
+    opacity: 1;}
+
+  50% {opacity: 0;}
+
+  to {right: 100vw;}
 }
