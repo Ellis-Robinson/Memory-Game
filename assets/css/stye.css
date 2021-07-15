@@ -1,5 +1,6 @@
 /*To do list
  - change background color of modal
+ - add media queries
  */
 
 /*--------------------------------general*/
@@ -22,23 +23,28 @@ body {
       margin: 20px 0px;
 }
 
+.md-screen {
+  display: none;
+}
+
 
 /*-----------------------------------game area*/
 .game-area {
     display: flex;
     justify-content: center;
     height: fit-content;
+    margin-top: 70px;
     width: 90vw;
     border: dashed 1px;
-    margin: 0 5%;
+    margin: 70px 5% 0px;
 }
 .game-rows {
   height: 50%;
 }
 .game-square {
   display: inline-block;
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   border-radius: 10%;
   border: outset 7px rgb(2 107 149);
   cursor: pointer;
@@ -54,11 +60,17 @@ body {
   background-color: rgb(67, 193, 225);
   border-color: rgb(39, 143, 185);
 }
+.flash-success {
+  box-shadow: 0 0 10px 15px rgba(0, 193, 16, 0.85); 
+}
+.flash-fail {
+  box-shadow: 0 0 10px 15px rgba(255, 0, 0, 0.8);
+}
 
 .announcement {
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 17%;
 }
 
 .hidden {
@@ -70,6 +82,9 @@ body {
     right: 50%;
     animation-duration: 1s;
     animation-name: shake;
+}
+.success-glow {
+  text-shadow: 0px 0px 5px rgb(44, 200, 37);
 }
 
 .slide-in-right {
@@ -83,6 +98,11 @@ body {
   animation-duration: 1s;
   animation-name: slide-out-left
   
+}
+/*----------------------------score info section*/
+.red-heart {
+  color: #ff0000;
+  text-shadow: 0px 0px 5px white;
 }
 
 /*--------------------animation keyframes*/
@@ -117,3 +137,5 @@ body {
 
   to {right: 100vw;}
 }
+
+/*-------------------media Queries*/

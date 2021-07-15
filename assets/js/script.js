@@ -1,90 +1,55 @@
 // To do list
-// - replace all alerts with modals or animation of some sort 
+// 
 // - add animation for correct/incorrect/life removal.
 // - add reset highscore (clear stats)
-// - add hard mode config
-// - fix welldone/tryagain
+// 
+//
+// - adjust order of functions to order of occurence
 
 let mainGameSection = document.querySelector("#main-game-section");
 
 let easyConfig = `<!--main game section, easy config-->
 <div id="game-area-easy" class="animate__animated animate__zoomIn">
-<!--announcments (hidden untill called in script.js)-->
-    <div class="announcement">
-        <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
-    </div>
-
-    <div class="announcement">
-        <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
-    </div>
-
-    <div class="announcement">
-        <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
-    </div>
-<!--game squares (easy)-->
-    <div id="game-square-1" data-square="1" class="game-square blue"></div>
-    <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
-    <div id="game-square-3" data-square="3" class="game-square blue"></div>
-    <div id="game-square-4" data-square="4" class="game-square blue"></div>
-</div>`
+    <!--game squares (easy)-->
+        <div id="game-square-1" data-square="1" class="game-square blue"></div>
+        <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
+        <div id="game-square-3" data-square="3" class="game-square blue"></div>
+        <div id="game-square-4" data-square="4" class="game-square blue"></div>
+    </div>`
 
 let mediumConfig = `<!--main game section, medium config-->
 <div id="game-area-medium" class="animate__animated animate__zoomIn">
-    <!--announcments (hidden untill called in script.js)-->
-        <div class="announcement">
-            <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
-        </div>
-
-        <div class="announcement">
-            <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
-        </div>
-
-        <div class="announcement">
-            <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
-        </div>
     <!--game squares (medium)-->
-                <div id="game-square-1" data-square="1" class="game-square blue"></div>
-                <div id="game-square-2" data-square="2" class="game-square blue"></div>
-                <div id="game-square-3" data-square="3" class="game-square blue"></div> <br>
-                <div id="game-square-4" data-square="4" class="game-square blue"></div>
-                <div id="game-square-5" data-square="5" class="game-square blue"></div>
-                <div id="game-square-6" data-square="6" class="game-square blue"></div> <br>
-                <div id="game-square-7" data-square="7" class="game-square blue"></div>
-                <div id="game-square-8" data-square="8" class="game-square blue"></div>
-                <div id="game-square-9" data-square="9" class="game-square blue"></div>
+        <div id="game-square-1" data-square="1" class="game-square blue"></div>
+        <div id="game-square-2" data-square="2" class="game-square blue"></div>
+        <div id="game-square-3" data-square="3" class="game-square blue"></div> <br>
+        <div id="game-square-4" data-square="4" class="game-square blue"></div>
+        <div id="game-square-5" data-square="5" class="game-square blue"></div>
+        <div id="game-square-6" data-square="6" class="game-square blue"></div> <br>
+        <div id="game-square-7" data-square="7" class="game-square blue"></div>
+        <div id="game-square-8" data-square="8" class="game-square blue"></div>
+        <div id="game-square-9" data-square="9" class="game-square blue"></div>
     </div>`;
 
 let hardConfig = `<!--main game section, hard config-->
 <div id="game-area-hard" class="animate__animated animate__zoomIn">
-    <!--announcments (hidden untill called in script.js)-->
-        <div class="announcement">
-            <h3 id="well-done-announcemet" class="hidden">Well Done!</h3>
-        </div>
-
-        <div class="announcement">
-            <h3 id="try-again-announcemet" class="hidden">Try again..</h3>
-        </div>
-
-        <div class="announcement">
-            <h3 id="play-again-announcemet" class="hidden">Out of lives. Play again?</h3>
-        </div>
     <!--game squares (hard)-->
-                <div id="game-square-1" data-square="1" class="game-square blue"></div>
-                <div id="game-square-2" data-square="2" class="game-square blue"></div>
-                <div id="game-square-3" data-square="3" class="game-square blue"></div> 
-                <div id="game-square-4" data-square="4" class="game-square blue"></div> <br>
-                <div id="game-square-5" data-square="5" class="game-square blue"></div>
-                <div id="game-square-6" data-square="6" class="game-square blue"></div> 
-                <div id="game-square-7" data-square="7" class="game-square blue"></div>
-                <div id="game-square-8" data-square="8" class="game-square blue"></div> <br>
-                <div id="game-square-9" data-square="9" class="game-square blue"></div>
-                <div id="game-square-10" data-square="10" class="game-square blue"></div> 
-                <div id="game-square-11" data-square="11" class="game-square blue"></div>
-                <div id="game-square-12" data-square="12" class="game-square blue"></div> <br>
-                <div id="game-square-13" data-square="13" class="game-square blue"></div> 
-                <div id="game-square-14" data-square="14" class="game-square blue"></div>
-                <div id="game-square-15" data-square="15" class="game-square blue"></div>
-                <div id="game-square-16" data-square="16" class="game-square blue"></div>
+        <div id="game-square-1" data-square="1" class="game-square blue"></div>
+        <div id="game-square-2" data-square="2" class="game-square blue"></div>
+        <div id="game-square-3" data-square="3" class="game-square blue"></div> 
+        <div id="game-square-4" data-square="4" class="game-square blue"></div> <br>
+        <div id="game-square-5" data-square="5" class="game-square blue"></div>
+        <div id="game-square-6" data-square="6" class="game-square blue"></div> 
+        <div id="game-square-7" data-square="7" class="game-square blue"></div>
+        <div id="game-square-8" data-square="8" class="game-square blue"></div> <br>
+        <div id="game-square-9" data-square="9" class="game-square blue"></div>
+        <div id="game-square-10" data-square="10" class="game-square blue"></div> 
+        <div id="game-square-11" data-square="11" class="game-square blue"></div>
+        <div id="game-square-12" data-square="12" class="game-square blue"></div> <br>
+        <div id="game-square-13" data-square="13" class="game-square blue"></div> 
+        <div id="game-square-14" data-square="14" class="game-square blue"></div>
+        <div id="game-square-15" data-square="15" class="game-square blue"></div>
+        <div id="game-square-16" data-square="16" class="game-square blue"></div>
     </div>`
 
 let gameSequence = [];
@@ -92,6 +57,10 @@ let gameSequence = [];
 let playerSequence = [];
 
 let gameSquare = [];
+
+let sequenceFlashing = false
+
+let startButton = document.querySelector("#start-btn");
 
 const currentRound = document.querySelector("#currentRound");
 
@@ -109,6 +78,8 @@ const dificultyLevel = document.querySelector("#difficulty-ul");
 // starts game
 function startGame() {
 
+    // startButton.className += " hidden";
+    reset();
     playerSequence = [];
     gameSequence = [];
     currentRound.innerHTML = 0;
@@ -131,25 +102,67 @@ function createSequence() {
     console.log(gameSequence);
 
 }
+//returns game squares to blue
+function gameSquareBlue () {
+    setTimeout(function(){
+        for (i = 0; i < gameSquare.length; i++)
+        gameSquare[i].className = "game-square blue";
+     }, 200);
+}
+
+//flashes game squares green
+function flashSquaresSuccess () {
+    for (i = 0; i < gameSquare.length; i++) {
+        
+        gameSquare[i].className += " flash-success";
+
+        gameSquareBlue();
+    }
+}
+//flashes game squares red
+function flashSquaresFail () {
+    for (i = 0; i < gameSquare.length; i++) {
+        
+        gameSquare[i].className += " flash-fail";
+
+        gameSquareBlue();
+    }
+}
 
 //targets game squares and flashes them in order of game sequence
 function flashSequence() {
+    isFlashing();
 
+    checkIfFlashing();
     for (let i = 0; i < gameSequence.length; i++) {
-
+        
         let flashSequenceTimeOut = setTimeout(function(){
+
             //-1 corrects sequence of flashes
             flashSquare(gameSequence[i]-1)
+
             //+1 delays start time by 1 second
-        }, 1000*(i+1));
+        }, 1000*(i+2));
 
         flashSequenceTimeOut;
+
         //allows for reset button to stop sequence on click
         document.querySelector("#reset-button").addEventListener("click", function() {
             clearTimeout(flashSequenceTimeOut);
         });
-      }
-      
+        //allows for start button to stop sequence on click before starting new sequence
+        document.querySelector("#start-btn").addEventListener("click", function() {
+            clearTimeout(flashSequenceTimeOut);
+        });
+        //runs isNotFlashing after sequence has stopped
+        setTimeout( isNotFlashing, 1000 * (gameSequence.length + 2) )
+        
+    }
+
+    setTimeout( checkIfFlashing, 1000 * (gameSequence.length + 2) )
+    
+
+   
 }
 
 // generates 1 random number between 1 and max number of game squares, adds to current sequence.
@@ -162,13 +175,12 @@ function incrementSequence() {
 //flashes selected square
 function flashSquare(i) {
         gameSquare[i].className += " flash";
-        setTimeout(function(){
-           gameSquare[i].className = "game-square blue";
-        }, 150);
+        gameSquareBlue();
 }
 
 //adds the integer of selected game square to player sequence array
 function createPlayerSequence(i) {
+    // '+' turns dataset.square from a string into an intager
     let squareNumber = +gameSquare[i].dataset.square
     playerSequence.push(squareNumber);
     console.log(playerSequence);
@@ -188,7 +200,7 @@ function checkSequences() {
             playerSequence = [];
         } else {
             //removes one life, clears players sequence and replays game sequence
-            if (lives.innerHTML > 0) {
+            if (lives.length > 0) {
                 flashTryAgain();
                 playerSequence = [];
                 decrementLives();
@@ -228,23 +240,20 @@ function incrementLives () {
 }
 //decrements lives
 function decrementLives () {
-    lives.innerHTML--
+    lives.splice(0,1);
 }
 //flashes well done message
 function flashWellDone () {
-    let wellDone = document.querySelector("#well-done-announcemet");
-    wellDone.className = "announcement-content";
-        setTimeout(function(){
-          wellDone.className = "hidden";
-        }, 1000);
+    setTimeout (function () {
+    flashSquaresSuccess();
+    }, 500);
+
 }
 //flashed try again message
 function flashTryAgain () {
-    let tryAgain = document.querySelector("#try-again-announcemet");
-    tryAgain.className = "announcement-content";
-        setTimeout(function(){
-            tryAgain.className = "hidden";
-        }, 1000);
+    setTimeout (function () {
+    flashSquaresFail();
+    }, 500);
 }
 //bring up play again modal 
 function clickPlayAgainButton () {
@@ -252,6 +261,7 @@ function clickPlayAgainButton () {
 }
 //resets game sequence/player sequence/round/lives
 function reset () {
+    startButton.className = "btn btn-primary main-buttons"
     gameSequence = [];
     playerSequence = [];
     currentRound.innerHTML = 0;
@@ -298,7 +308,7 @@ for(i = 0; i < dificultyLevel.children.length; i++)
 dificultyLevel.children[i].addEventListener("click", changeDificulty);
 
 //listening for if start button is clicked
-document.querySelector("#start-btn").addEventListener("click", startGame);
+startButton.addEventListener("click", startGame);
 
 //if play again button is clicked game will start again
 document.querySelector("#play-again-modal-btn").addEventListener("click", startGame);
@@ -307,17 +317,31 @@ document.querySelector("#play-again-modal-btn").addEventListener("click", startG
 document.querySelector("#no-thanks-modal-btn").addEventListener("click", reset);
 document.querySelector("#reset-button").addEventListener("click", reset);
 
-// listening for if game square is clicked
-gameSquare = document.querySelectorAll(".game-square");
 
-for(let i = 0; i < gameSquare.length; i++){
-    gameSquare[i].addEventListener("click", function() {
-        flashSquare(i);
-        createPlayerSequence(i);
-        checkSequences();
-        });
+// listening for if game square is clicked (add to on load)
+    gameSquare = document.querySelectorAll(".game-square");
+
+    for(let i = 0; i < gameSquare.length; i++){
+        gameSquare[i].addEventListener("click", function() {
+            flashSquare(i);
+            createPlayerSequence(i);
+            checkSequences();
+            });
+    }
+
+//checks if sequence is flashing
+function checkIfFlashing() {
+    if (sequenceFlashing == true) {
+            console.log("sequence flashing");
+        } else if (sequenceFlashing == false) {
+            console.log("sequence not flashing");
+        }
 }
-
-
     
-    
+    function isFlashing () {
+        sequenceFlashing = true;
+    }
+
+    function isNotFlashing () {
+        sequenceFlashing = false;
+    }
