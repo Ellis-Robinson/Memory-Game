@@ -8,7 +8,7 @@ body {
   background-image: url(https://github.com/Ellis-Robinson/Memory-Game/blob/main/assets/imgs/cloudsbg.jpg?raw=true);
   background-repeat: no-repeat;
   background-size: cover;
-  overflow: hidden;
+  overflow: auto;
 }
 .center {
   display: flex;
@@ -27,24 +27,27 @@ body {
   display: none;
 }
 
+.dif-hard {
+  display: none;
+}
+
 
 /*-----------------------------------game area*/
 .game-area {
     display: flex;
     justify-content: center;
     height: fit-content;
-    margin-top: 70px;
     width: 90vw;
     border: dashed 1px;
-    margin: 70px 5% 0px;
+    margin: 5%;
 }
 .game-rows {
   height: 50%;
 }
 .game-square {
   display: inline-block;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 10%;
   border: outset 7px rgb(2 107 149);
   cursor: pointer;
@@ -139,3 +142,21 @@ body {
 }
 
 /*-------------------media Queries*/
+@media screen and (min-width: 440px){
+  .game-square {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+
+
+@media screen and (min-width: 750px) {
+  .game-square {
+    width: 150px;
+    height: 150px;
+  }
+  .dif-hard {
+    display: block;
+  }
+}

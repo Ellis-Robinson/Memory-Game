@@ -15,8 +15,8 @@
 
 <body>
 	<!--top section with three buttons-->
-	<div class="row function-buttons">
-		<div class="col-3 center">
+	<div class="row function-buttons center">
+		<div class="col-4 center">
             <!-- Rule Button to trigger modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             Rules
@@ -41,7 +41,20 @@
             </div>
 		</div>
 
-        <div class="col-3 center">
+        <div class="col-4 center">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Difficulty: <br> <span id="difficulty-setting">Easy</span> 
+            </button>
+            <ul id="difficulty-ul" class="dropdown-menu">
+                <li class="dropdown-item">Easy</span></li>
+                <li class="dropdown-item">Medium</span></li>
+                <li class="dropdown-item dif-hard">Hard</span></li>
+            </ul>
+        </div>
+        </div>
+
+        <div class="row function-buttons center">
+
+        <div class="col-4 center">
           <button id="start-btn" type="button" class="btn btn-primary main-buttons">PLAY!</button>
           <!--hidden play again button-->
           <button id="play-again-hidden-btn"type="button" class="btn btn-primary hidden" data-bs-toggle="modal" data-bs-target="#play-again-modal" aria-hidden="true">
@@ -68,19 +81,10 @@
             </div>
         </div>
 
-        <div class="col-3 center">
+        <div class="col-4 center">
             <button id="reset-button" type="button" class="btn btn-primary">Reset</button>
           </div>
 
-        <div class="col-3 center">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Difficulty: <br> <span id="difficulty-setting">Easy</span> 
-            </button>
-            <ul id="difficulty-ul" class="dropdown-menu">
-                <li class="dropdown-item">Easy</span></li>
-                <li class="dropdown-item">Medium</span></li>
-                <li class="dropdown-item">Hard</span></li>
-            </ul>
-        </div>
         
     </div>
     <!--main game section-->
