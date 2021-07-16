@@ -142,7 +142,7 @@ function flashSequence() {
             flashSquare(gameSequence[i]-1)
 
             //+1 delays start time by 1 second
-        }, 1000*(i+2));
+        }, 1000*(i+1.5));
 
         flashSequenceTimeOut;
 
@@ -200,7 +200,7 @@ function checkSequences() {
             playerSequence = [];
         } else {
             //removes one life, clears players sequence and replays game sequence
-            if (lives.length > 0) {
+            if (lives.innerHTML > 0) {
                 flashTryAgain();
                 playerSequence = [];
                 decrementLives();
@@ -240,7 +240,7 @@ function incrementLives () {
 }
 //decrements lives
 function decrementLives () {
-    lives.splice(0,1);
+    lives.innerHTML--;
 }
 //flashes well done message
 function flashWellDone () {
@@ -261,7 +261,7 @@ function clickPlayAgainButton () {
 }
 //resets game sequence/player sequence/round/lives
 function reset () {
-    startButton.className = "btn btn-primary main-buttons"
+    // startButton.className = "btn btn-primary main-buttons"
     gameSequence = [];
     playerSequence = [];
     currentRound.innerHTML = 0;
