@@ -1,6 +1,5 @@
 /*To do list
  - change background color of modal
- - add media queries
  - comment on large blocks of code
  */
 
@@ -19,25 +18,28 @@ body {
 
 /*----------------------function buttons section*/
 
-
+#start-btn {
+  font-size: 1.5rem ;
+  font-weight: bold;
+}
 .function-buttons {
       margin: 20px 0px;
 }
 
 .button-dark-blue{
-  color: #fff;
-background-color: #00334c;
+  color: rgb(0, 0, 0);
+background-color: #43baf5;
 border-color: #026b95;
 }
 
 .button-dark-blue:hover {
-  color: #fff;
-  background-color: #0476af;
+  color: rgb(100, 94, 94);
+  background-color: #8edafa;
 }
 
 .button-dark-blue:focus {
-  color: #fff;
-  background-color: #00334c;
+  color: rgb(100, 94, 94);
+  background-color: #8edafa;
   border-color: #026b95;
   box-shadow: 0 0 0 5px rgb(255 255 255 / 72%);
 }
@@ -48,9 +50,13 @@ border-color: #026b95;
 }
 
 .dropdown-item {
+  color: rgb(0, 0, 0);
+  background-color: #43baf5;
+}
+.dropdown-item:hover {
+  color: rgb(100, 94, 94);
   background-color: #8edafa;
 }
-
 .dif-hard {
   display: none;
 }
@@ -62,7 +68,6 @@ border-color: #026b95;
     justify-content: center;
     height: fit-content;
     width: 90vw;
-    border: dashed 1px;
     margin: 5% 5% 0% 5%;
 }
 .game-rows {

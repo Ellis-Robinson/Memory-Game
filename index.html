@@ -1,3 +1,7 @@
+<!--to do list
+- add google fonts
+- add hearts to lives (edit functions in JS so everything still works)-->
+
 <!DOCTYPE html>
 <html>
 
@@ -32,7 +36,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                           When the game starts you will see the squares light up in a sequence. You must then match the correct sequence. Each round the sequence will get progressivly longer. You have three lives, if you get a sequence wrong you lose a life and it shows you the sequence again. Have fun!
+                        
+                           - When the game starts you will see the squares light up in a sequence. <br>
+                           - You must then match the correct sequence by clicking on the squares. <br>
+                           - Each round the sequence will get progressivly longer. <br>
+                           - You have three lives. <br>
+                           - if you get a sequence wrong you lose a life and it shows you the sequence again. <br> 
+                           <br>
+                           Have fun!
+                        
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -41,6 +53,10 @@
                 </div>
             </div>
 		</div>
+
+        <div class="col-4 center">
+            <button id="reset-button" type="button" class="btn button-dark-blue">Reset</button>
+        </div>
 
         <div class="col-4 center">
             <button type="button" class="btn button-dark-blue dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Difficulty: <br> <span id="difficulty-setting">Easy</span> 
@@ -80,13 +96,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col-4 center">
-            <button id="reset-button" type="button" class="btn button-dark-blue">Reset</button>
-          </div>
-
-        
+        </div> 
     </div>
     <!--main game section-->
     <div id="main-game-section" class="game-area">

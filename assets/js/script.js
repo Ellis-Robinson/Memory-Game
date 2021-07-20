@@ -1,10 +1,7 @@
 // To do list
-// 
+//  - remove undeeded console logs
 // - add animation for correct/incorrect/life removal.
 // - add reset highscore (clear stats)
-// 
-//
-// - adjust order of functions to order of occurence
 
 let mainGameSection = document.querySelector("#main-game-section");
 
@@ -80,8 +77,8 @@ const dificultyLevel = document.querySelector("#difficulty-ul");
 // starts game
 function startGame() {
 
-    // startButton.className += " hidden";
-    reset();
+    startButton.className = "btn button-dark-blue main-buttons hidden";
+    // reset();
     playerSequence = [];
     gameSequence = [];
     currentRound.innerHTML = 0;
@@ -294,6 +291,7 @@ function reset () {
     playerSequence = [];
     currentRound.innerHTML = 0;
     lives.innerHTML = 3;
+    startButton.className = "btn button-dark-blue main-buttons";
 }
 //reconfigurs game area for current difficulty
 function changeDificulty () {
