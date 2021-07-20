@@ -82,7 +82,7 @@ function startGame() {
     playerSequence = [];
     gameSequence = [];
     currentRound.innerHTML = 0;
-    lives.innerHTML = 3;
+    lives.innerHTML = `<i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i>`;
 
     createSequence();
     flashSequence();
@@ -115,6 +115,7 @@ function flashSequence() {
     isFlashing();
 
     checkIfFlashing();
+    
     for (let i = 0; i < gameSequence.length; i++) {
         
         let flashSequenceTimeOut = setTimeout(function(){
@@ -200,7 +201,7 @@ function checkSequences() {
             playerSequence = [];
         } else {
             //removes one life, clears players sequence and replays game sequence
-            if (lives.innerHTML > 0) {
+            if (+lives.children.length > 0) {
                 fail();
                 playerSequence = [];
                 decrementLives();
@@ -258,7 +259,7 @@ function incrementSequence() {
 function incrementRound() {
    currentRound.innerHTML++
 
-   if (currentRound.innerHTML > highScore.innerHTML) {
+   if (+currentRound.innerHTML > +highScore.innerHTML) {
        incrememntHighScore();
    }
 
@@ -273,12 +274,12 @@ function incrememntHighScore() {
 //increments lives if player reaches round 5 and 10
 function incrementLives () {
     if (currentRound.innerHTML === "5" || currentRound.innerHTML === "10" ) {
-        lives.innerHTML++;
+        lives.innerHTML += ` <i class="fas fa-heart red-heart"></i>`;
     }
 }
 //decrements lives
 function decrementLives () {
-    lives.innerHTML--;
+    lives.removeChild(lives.lastElementChild);
 }
 
 //bring up play again modal 

@@ -6,29 +6,34 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
-	<title>Memory Game</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	 crossorigin="anonymous">
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-     <link rel="icon" type="image/png" href="assets/imgs/brain-favicon-32x32.png">
-     <script src="assets/js/jquery-3.6.0.js"></script>
-	<link href="assets/css/stye.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Memory Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="icon" type="image/png" href="assets/imgs/brain-favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+    <script src="assets/js/jquery-3.6.0.js"></script>
+    <link href="assets/css/stye.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-	<!--top section with three buttons-->
-	<div class="row function-buttons center">
-		<div class="col-4 center">
+    <!--top section with three buttons-->
+    <div class="row function-buttons center">
+        <div class="col-4 center">
             <!-- Rule Button to trigger modal -->
             <button type="button" class="btn button-dark-blue" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            Rules
+                Rules
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -36,15 +41,15 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        
-                           - When the game starts you will see the squares light up in a sequence. <br>
-                           - You must then match the correct sequence by clicking on the squares. <br>
-                           - Each round the sequence will get progressivly longer. <br>
-                           - You have three lives. <br>
-                           - if you get a sequence wrong you lose a life and it shows you the sequence again. <br> 
-                           <br>
-                           Have fun!
-                        
+
+                            - When the game starts you will see the squares light up in a sequence. <br>
+                            - You must then match the correct sequence by clicking on the squares. <br>
+                            - Each round the sequence will get progressivly longer. <br>
+                            - You have three lives. <br>
+                            - if you get a sequence wrong you lose a life and it shows you the sequence again. <br>
+                            <br>
+                            Have fun!
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -52,14 +57,15 @@
                     </div>
                 </div>
             </div>
-		</div>
+        </div>
 
         <div class="col-4 center">
             <button id="reset-button" type="button" class="btn button-dark-blue">Reset</button>
         </div>
 
         <div class="col-4 center">
-            <button type="button" class="btn button-dark-blue dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Difficulty: <br> <span id="difficulty-setting">Easy</span> 
+            <button type="button" class="btn button-dark-blue dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">Difficulty: <br> <span id="difficulty-setting">Easy</span>
             </button>
             <ul id="difficulty-ul" class="dropdown-menu">
                 <li class="dropdown-item">Easy</li>
@@ -67,19 +73,21 @@
                 <li class="dropdown-item dif-hard">Hard</li>
             </ul>
         </div>
-        </div>
+    </div>
 
-        <div class="row function-buttons center">
+    <div class="row function-buttons center">
 
         <div class="col-4 center">
-          <button id="start-btn" type="button" class="btn button-dark-blue main-buttons">PLAY!</button>
-          <!--hidden play again button-->
-          <button id="play-again-hidden-btn"type="button" class="btn button-dark-blue hidden" data-bs-toggle="modal" data-bs-target="#play-again-modal" aria-hidden="true">
-            Play again
+            <button id="start-btn" type="button" class="btn button-dark-blue main-buttons">PLAY!</button>
+            <!--hidden play again button-->
+            <button id="play-again-hidden-btn" type="button" class="btn button-dark-blue hidden" data-bs-toggle="modal"
+                data-bs-target="#play-again-modal" aria-hidden="true">
+                Play again
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="play-again-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="play-again-modal" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -87,21 +95,23 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                           Would you like to play again?
+                            Would you like to play again?
                         </div>
                         <div class="modal-footer">
-                            <button id="play-again-modal-btn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Play again</button>
-                            <button id="no-thanks-modal-btn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">No Thanks</button>
+                            <button id="play-again-modal-btn" type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Play again</button>
+                            <button id="no-thanks-modal-btn" type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">No Thanks</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
     <!--main game section-->
     <div id="main-game-section" class="game-area">
         <div id="game-area-easy" class="animate__animated animate__zoomIn">
-        <!--game squares (easy)-->
+            <!--game squares (easy)-->
             <div id="game-square-1" data-square="1" class="game-square blue"></div>
             <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
             <div id="game-square-3" data-square="3" class="game-square blue"></div>
@@ -117,14 +127,17 @@
             <h4>High Score: <span id="hightScore">0</span></h4>
         </div>
         <div class="center">
-            <h4>Lives Left: <span id="lives"> 
-                <!-- <i class="fas fa-heart red-heart"></i>  
-                <i class="fas fa-heart red-heart"></i>
-                <i class="fas fa-heart red-heart"></i> -->
-                 3</span></h4>
+            <h4>Lives Left: <span id="lives">
+                    <i class="fas fa-heart red-heart"></i>  
+                    <i class="fas fa-heart red-heart"></i>
+                    <i class="fas fa-heart red-heart"></i>
+                </span></h4>
         </div>
     </div>
     <script src="assets/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
