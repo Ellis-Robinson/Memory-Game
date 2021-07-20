@@ -60,6 +60,8 @@ let gameSquare = [];
 
 let sequenceFlashing = false
 
+let screenSizeMdSm = window.matchMedia("(max-width: 750px)");
+
 let startButton = document.querySelector("#start-btn");
 
 const currentRound = document.querySelector("#currentRound");
@@ -161,8 +163,6 @@ function flashSequence() {
 
     setTimeout( checkIfFlashing, 1000 * (gameSequence.length + 2) )
     
-
-   
 }
 
 // generates 1 random number between 1 and max number of game squares, adds to current sequence.
@@ -287,6 +287,15 @@ function changeDificulty () {
         gameSquareEventListener();
     }
 }
+
+function removeHardConfig () {
+    if (screenSizeMdSm.matches && mainGameSection.innerHTML == hardConfig) {
+        mainGameSection.innerHTML = mediumConfig;
+        gameSquareEventListener();
+        document.querySelector("#difficulty-setting").innerHTML = "Medium";
+    }
+}
+
 //creates event hadler for current game squares
 function gameSquareEventListener () {
     gameSquare = document.querySelectorAll(".game-square");
@@ -318,7 +327,7 @@ document.querySelector("#no-thanks-modal-btn").addEventListener("click", reset);
 document.querySelector("#reset-button").addEventListener("click", reset);
 
 
-// listening for if game square is clicked (add to on load)
+// listening for if game square is clicked
     gameSquare = document.querySelectorAll(".game-square");
 
     for(let i = 0; i < gameSquare.length; i++){
@@ -328,6 +337,9 @@ document.querySelector("#reset-button").addEventListener("click", reset);
             checkSequences();
             });
     }
+
+//runs function if screensize is below 750px
+screenSizeMdSm.addListener(removeHardConfig);
 
 //checks if sequence is flashing
 function checkIfFlashing() {
