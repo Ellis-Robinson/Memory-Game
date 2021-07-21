@@ -61,6 +61,9 @@ border-color: #026b95;
 .dif-hard {
   display: none;
 }
+.dif-md {
+  display: none;
+}
 
 
 /*-----------------------------------game area*/
@@ -104,78 +107,28 @@ border-color: #026b95;
   box-shadow: 0 0 10px 15px rgba(255, 0, 0, 0.8);
 }
 
-.announcement {
-  position: absolute;
-  left: 50%;
-  top: 17%;
-}
-
 .hidden {
   display: none;
 }
 
-.announcement-content {
-    position: relative;
-    right: 50%;
-    animation-duration: 1s;
-    animation-name: shake;
-}
+
 .success-glow {
   text-shadow: 0px 0px 5px rgb(44, 200, 37);
 }
 
-.slide-in-right {
-  position: relative;
-  animation-duration: 1s;
-  animation-name: slide-in-right;
-}
-.slide-out-left {
-  position: relative;
-  right: 150vw;
-  animation-duration: 1s;
-  animation-name: slide-out-left
-  
-}
 /*----------------------------score info section*/
 .red-heart {
   color: #ff0000;
   text-shadow: 0px 0px 5px white;
 }
 
-/*--------------------animation keyframes*/
-
-@keyframes shake {
-  from {transform: rotate(0deg);}
-  
-  20% {transform: rotate(5deg);}
-  40% {transform: rotate(-5deg);}
-  60% {transform: rotate(5deg);}
-  80% {transform: rotate(-5deg);}
-  
-  to {transform: rotate(0deg);}
-}
-
-@keyframes slide-in-right {
-  from {left: 100vw;
-  opacity: 0}
-
-  80% {left: -10vw;}
-  
-  to {left: 0;
-    opacity: 1;}
-}
-
-@keyframes slide-out-left {
-  from {
-    right: 0;
-    opacity: 1;}
-
-  50% {opacity: 0;}
-
-  to {right: 100vw;}
-}
-
 /*-------------------media Queries*/
+
+@media screen and (min-width: 315px){
+  .dif-md {
+    display: block;
+  }
+}
 @media screen and (min-width: 440px){
   .game-square {
     width: 110px;
