@@ -87,7 +87,6 @@ function startGame() {
     playerSequence = [];
     gameSequence = [];
     currentRound.innerHTML = 0;
-    stopRoundCountdown()
     lives.innerHTML = `<i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i>`;
 
     createSequence();
@@ -137,13 +136,7 @@ function flashSequence() {
         //allows for reset button to stop sequence and round timer on click
         document.querySelector("#reset-button").addEventListener("click", function() {
             clearTimeout(flashSequenceTimeOut);
-            clearTimeout(startTimerTimeout);
         });
-
-        document.querySelector("#difficulty-ul").children[i].addEventListener("click", function() {
-            clearTimeout(startTimerTimeout);
-            clearTimeout(flashSequenceTimeOut);
-        })
 
         //runs isNotFlashing after sequence has stopped
         setTimeout( isNotFlashing, 1000 * (gameSequence.length + 1) )
@@ -152,39 +145,6 @@ function flashSequence() {
     //runs checkIfFlashing after sequence has stopped
     let checkFlashingTimeout =
     setTimeout( checkIfFlashing, 1000 * (gameSequence.length + 1) );
-
-    //starts count down timer once game sequence has stopped flashing
-    let startTimerTimeout = 
-    setTimeout( roundTimer,  1000 * (gameSequence.length + 1))
-}
-
-//starts countdown timer, same length as game sequence + 1 
-function roundTimer () {
-    timer = gameSequence.length + 1;
-
-    timerCountdown = 
-    
-    setInterval( function(){
-        console.log(timer);
-        timer--
-        //removes life and starts game sequence again when timer is 0
-        if (timer <= 0 && lives.children.length > 0){
-            stopRoundCountdown();
-            fail();
-            playerSequence = [];
-            decrementLives();
-            checkSequences();
-            flashSequence();
-        // ends game if times out when lives at 0 
-        } else if (timer <= 0 && !lives.children.length > 0) {
-            stopRoundCountdown();
-            checkSequences();
-        }}, 1000);
-
-}
-//stops round countdown timer 
-function stopRoundCountdown () {
-    clearInterval(timerCountdown)
 }
 
 //disableds game squares if sequence is flashing, adds event listeners if sequence isnt flashing
@@ -241,7 +201,6 @@ function checkSequences() {
             incrementRound();
             flashSequence();
             playerSequence = [];
-            stopRoundCountdown();
         } else {
             //removes one life, clears players sequence and replays game sequence
             if (+lives.children.length > 0) {
@@ -249,12 +208,10 @@ function checkSequences() {
                 playerSequence = [];
                 decrementLives();
                 flashSequence();
-                stopRoundCountdown();
             }else {
                 //resets players sequence and round score. starts new game
                 console.log("incorrect!");
                 clickPlayAgainButton();
-                stopRoundCountdown();
             }
         }
     }
@@ -262,7 +219,6 @@ function checkSequences() {
     if (playerSequence.length < gameSequence.length) {
         //ends game if player out of lives
         if (!+lives.children.length > 0) {
-            stopRoundCountdown();
             clickPlayAgainButton();
         } else {
             console.log("click more squares");
@@ -274,8 +230,7 @@ function success () {
     setTimeout (function () {
     flashSquaresSuccess();
     }, 500);
-    
-    stopRoundCountdown ()
+
 }
 //flashed try again message
 function fail () {
@@ -321,8 +276,9 @@ function incrementRound() {
 
         incrementLives();
 
-        incrementSequence();
         }, 500);
+
+    incrementSequence();
 }
 //incements high score
 function incrememntHighScore() {
@@ -351,7 +307,6 @@ function clickPlayAgainButton () {
 }
 //resets game sequence/player sequence/round/lives
 function reset () {
-    stopRoundCountdown();
     gameSequence = [];
     playerSequence = [];
     currentRound.innerHTML = 0;
