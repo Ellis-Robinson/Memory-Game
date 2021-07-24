@@ -321,8 +321,9 @@ function incrementRound() {
 
         incrementLives();
 
-        incrementSequence();
         }, 500);
+    
+    incrementSequence();
 }
 //incements high score
 function incrememntHighScore() {
