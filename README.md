@@ -63,13 +63,35 @@ The page was kept simple and is responsive across all screen sizes using a mix o
 
     - Lives are shown in the from of red hearts. 	
 
-## credits
+## Technologies
 
-- [bootstrap](https://getbootstrap.com/) 
+### Languages
+
+- [HTML5](https://www.w3schools.com/html/)
+    - Used for the main structure ad content of the webpage.
+
+- [CSS3](https://www.w3schools.com/css/)
+
+    - Used to style the different elements on the page and allow for responsivness.
+
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+    - Used to create the main functionality of the game as well as some of the responsivness across different screen sizes.
+
+### Libraries
+
+- [Bootstrap](https://getbootstrap.com/) 
     
     - All the main buttons (with some size and color adaptations).
     
-    - Modals used for 'Rules' section and 'Play Again' display. 
+    - Modals used for 'Rules' section and 'Play Again?' display.
+
+- [Animate.css](https://animate.style/)
+
+    - Animations for game squares when transitioning between difficulty levels.
+
+## credits
+ 
 
 - [animate.css](https://animate.style/)
 

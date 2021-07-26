@@ -271,7 +271,7 @@ function incrementRound() {
         currentRound.innerHTML++
 
         if (+currentRound.innerHTML > +highScore.innerHTML) {
-            incrememntHighScore();
+            highScore.innerHTML = currentRound.innerHTML;
         }
 
         incrementLives();
@@ -281,7 +281,7 @@ function incrementRound() {
     incrementSequence();
 }
 //incements high score
-function incrememntHighScore() {
+function incrementHighScore() {
     hightScore.innerHTML++
 }
 //increments lives if player reaches round 5 and 10
@@ -312,6 +312,10 @@ function reset () {
     currentRound.innerHTML = 0;
     lives.innerHTML = `<i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i>`;
     startButton.className = "btn button-dark-blue main-buttons";
+}
+//resets highscore to 0
+function clearHighScore () {
+    highScore.innerHTML = 0;
 }
 //reconfigurs game area for current difficulty
 function changeDificulty () {
@@ -391,6 +395,8 @@ document.querySelector("#no-thanks-modal-btn").addEventListener("click", reset);
 
 //clears stats if reset is clicked
 document.querySelector("#reset-button").addEventListener("click", reset);
+
+document.querySelector("#clearHighScore").addEventListener("click", clearHighScore);
 
 
 // listening for if game square is clicked
