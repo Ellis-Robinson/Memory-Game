@@ -168,7 +168,7 @@ function flashSquareForSequence(i) {
 
     gameSquare[i].className += " flash";
     gameSquareBlue();
-    pop.play();
+    playPopSfx();
 }
 
 //flashes selected square
@@ -376,15 +376,15 @@ function removeGameSquareEventListener () {
 function toggleMusic () {
     let music = document.querySelector("#calm");
     
-    let soundBtn = document.querySelector("#soundButton")
+    let soundBtn = document.querySelector("#soundButton");
     
     if (music.paused) {
         music.play();
         music.volume = 0.5;
-        soundBtn.className = "fas fa-volume-up";
+        soundBtn.className = "glow fas fa-volume-up";
     } else {
         music.pause();
-        soundBtn.className = "fas fa-volume-mute";
+        soundBtn.className = "glow fas fa-volume-mute";
     }
     
     

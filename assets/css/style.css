@@ -17,11 +17,6 @@ body {
   align-items: center
 }
 
-/*----------------------Landing page*/
-.main-page-title {
-  font-size: 2rme;
-}
-
 /*----------------------function buttons section*/
 
 #start-btn {
@@ -135,6 +130,10 @@ border-color: #026b95;
   padding: 3px 6px;
 }
 
+.glow {
+  font-size: 25px;
+  text-shadow: 0 0 8px white;
+}
 
 /*-------------------media Queries*/
 
