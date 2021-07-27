@@ -17,6 +17,11 @@ body {
   align-items: center
 }
 
+/*----------------------Landing page*/
+.main-page-title {
+  font-size: 2rme;
+}
+
 /*----------------------function buttons section*/
 
 #start-btn {

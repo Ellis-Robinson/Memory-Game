@@ -1,15 +1,15 @@
 # Milestone Project 2 : Memorry game
 
 
-## Purpouse
+# Purpouse
 
 This is the second milestone project in my full stack development course. It is focusing on interactive frontend development utilising HTML, CSS and Javascript. 
 
 I have created a simple memory game, where the user will be shown a flashing sequence and then have to repeate the sequence back to the game. The sequence will get progressivly harder as the ame cotinues.
 
-## User stories
+# User stories
 
-1. I want an clear good looking landing page
+1. I want a clear good looking landing page
 
 2. I want to understand the rules of the game.
 
@@ -19,27 +19,27 @@ I have created a simple memory game, where the user will be shown a flashing seq
 
 5. I want to keep track of my scores.
 
-## Design
+# Design
 
 I wanted a simple, elegent look that was light and inviting. with it being a memory game an uncluttered page was important, to avoid distractions. This was achieved through the use of light colours and a minimalistic approch. A few clear buttons for; Starting the game (which disapears once the game starts); The rules, reseting the game and changing the dificulty are laid out across the top. A clear game area takes up the center of the screen and at the bottom are the players score and lives.
 
-- ### Wireframes
+- ## Wireframes
 
     Using balsamiq, I created a wireframe of my project. The finished page is very true to the design 
 
     [Memory Game Wireframe](docs/README-imgs/Memory-game-wireframe.png)
 
-- ### Color Scheme
+- ## Color Scheme
 
     I chose blue as my main color, using a light blue background (<strong>#8edafa</strong>) with contrasting dark blue game squares (<strong>#00334c</strong>). The light blue and white create a welcoming calming look and allow the darker main game area to stand out.
 
 
-- ### Typography
+- ## Typography
 
     I used <strong>Merienda</strong> font family, in two font weights; 400 and 700. I felt it was a sofisticated yet simple looking font which helped lend a calming feel to the page.
 
 
-## Features
+# Features
 
 The page was kept simple and is responsive across all screen sizes using a mix of preset responsive elements from libraries like bootstrap, custom CSS media queries and JavaScript listeners
 
@@ -63,9 +63,21 @@ The page was kept simple and is responsive across all screen sizes using a mix o
 
     - Lives are shown in the from of red hearts. 	
 
-## Technologies
+### Future featurs
 
-### Languages
+- different graphics on higher levels
+- slightly different sounds for each square
+- animated background
+- animaitions for losing and gaining lives
+- different layouts other than square grid
+- different shaped game peices
+- different theme options
+- individual users high score + score board
+
+
+# Technologies
+
+## Languages
 
 - [HTML5](https://www.w3schools.com/html/)
     - Used for the main structure ad content of the webpage.
@@ -78,7 +90,7 @@ The page was kept simple and is responsive across all screen sizes using a mix o
 
     - Used to create the main functionality of the game as well as some of the responsivness across different screen sizes.
 
-### Libraries
+## Libraries
 
 - [Bootstrap](https://getbootstrap.com/)
     
@@ -90,13 +102,71 @@ The page was kept simple and is responsive across all screen sizes using a mix o
 
     - Animations for game squares when transitioning between difficulty levels.
 
-### Tools
+## Tools
 
 - [converto](https://s4.converto.io/en15/download-redirect/?id=2aljibOM7a9fTtFswgEuKBIK09wjx3ed)
 
     - used to convert youtube clips to mp3 files to be used as sound effects.
 
-## credits
+# Testing
+
+The project was completed using google chrome browser so initial testing was done dynamicaly throughout the project. I then tested each element across firefox and microsoft edge browsers.
+
+## User stories
+
+1. I want a clear good looking landing page
+
+    . 
+
+
+2. I want to understand the rules of the game.
+
+    - A clear button marked rules brings up a modal explaining the rules of the game 
+    ![screenshot of rules button](docs/README-imgs/user-story-2-rules.png)
+    ![screen shot of rules modal](docs/README-imgs/user-story-2-rules-modal.png)
+
+3. I want to know how well I am doing.
+
+    - The current round the user is on is displayed just below the game area.
+    ![screenshot of current round](docs/README-imgs/user-story-3-round.png)
+
+4. I want to be able to change the difficulty setting. 
+
+    - A button above the game area marked 'difficulty' displays the current difficulty level and brings up a drop down menu with available difficulties.
+    ![screenshot of difficulty butto](docs/README-imgs/user-story-4-difficulty.png)
+
+5. I want to keep track of my high score.
+
+    - The highest score achieved is displayed just below the game area, below the current round indicator.
+    ![screenshot of highscore](docs/README-imgs/user-story-5-highscore.png)
+
+## feature testing
+
+- Nav section
+
+    - all buttons have been tested on different browsers and all function as intended with positioning ad content depending on screen size
+
+- Game section
+    
+    - the game squares display correctly accross the different browsers with the correct content being displayed depending on screen size.
+
+- Score section
+
+    - The round, high score and lives all display correctly across the different browsers and functioned reliably throughout my testing.
+
+## Responsivness
+
+The project was created using mobile first approach and then addapted to display differently as the screen sizes increased. Google chrome developer tools was my main form of testing. I personally tested the game on several different devices, and the game was also sent out to multiple people using different divices and any minor display issues were corrected.
+
+## Code validation
+
+- HTML
+    - 
+- CSS
+    - 
+- JavaScript
+- 
+# credits
  
 
 - [animate.css](https://animate.style/)
@@ -119,8 +189,8 @@ The page was kept simple and is responsive across all screen sizes using a mix o
 
     - [Correct sequence sound](https://www.youtube.com/watch?v=3wr8ntTQaeA)
 
-    -[Incorrect sequence sound](https://www.youtube.com/watch?v=PdNb0r_n2mo) 
+    - [Incorrect sequence sound](https://www.youtube.com/watch?v=PdNb0r_n2mo) 
 
-    -[Play again modal sound](https://www.youtube.com/watch?v=1ar7fqJXD50)
+    - [Play again modal sound](https://www.youtube.com/watch?v=1ar7fqJXD50)
 
     - [Background music](https://www.youtube.com/watch?v=zPyg4N7bcHM&t=53s)
