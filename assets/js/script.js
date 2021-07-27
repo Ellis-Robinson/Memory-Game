@@ -1,3 +1,4 @@
+// jshint esversion: 6
 // To do list
 //  - remove undeeded console logs
 // - add reset highscore (clear stats)
@@ -12,7 +13,7 @@ let easyConfig = `<!--main game section, easy config-->
         <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
         <div id="game-square-3" data-square="3" class="game-square blue"></div>
         <div id="game-square-4" data-square="4" class="game-square blue"></div>
-    </div>`
+    </div>`;
 
 let mediumConfig = `<!--main game section, medium config-->
 <div id="game-area-medium" class="animate__animated animate__zoomIn">
@@ -47,7 +48,7 @@ let hardConfig = `<!--main game section, hard config-->
         <div id="game-square-14" data-square="14" class="game-square blue"></div>
         <div id="game-square-15" data-square="15" class="game-square blue"></div>
         <div id="game-square-16" data-square="16" class="game-square blue"></div>
-    </div>`
+    </div>`;
 
 let gameSequence = [];
 
@@ -57,10 +58,6 @@ let gameSquare = [];
 
 let sequenceFlashing = false;
 
-let timerCountdown
-
-let timer
-
 let screenSizeMdSm = window.matchMedia("(max-width: 750px)");
 
 let screenSizeSm = window.matchMedia("(max-width: 315px)");
@@ -69,11 +66,9 @@ let startButton = document.querySelector("#start-btn");
 
 const currentRound = document.querySelector("#currentRound");
 
-const highScore = document.querySelector("#hightScore");
+const highScore = document.querySelector("#highScore");
 
 const lives = document.querySelector("#lives");
-
-const gameArea = document.querySelector("#game-area-easy");
 
 const dificultyLevel = document.querySelector("#difficulty-ul");
 
@@ -98,7 +93,7 @@ function createSequence() {
 
     for (let i = 0; i < 3; i++) {
         //gameSquare.length + 1 accounts for Math.floor rouding the number down
-        let randomNums = Math.floor(Math.random() * gameSquare.length + 1)
+        let randomNums = Math.floor(Math.random() * gameSquare.length + 1);
 
         gameSequence.push(randomNums);
     }
@@ -109,7 +104,7 @@ function createSequence() {
 //returns game squares to blue
 function gameSquareBlue () {
     setTimeout(function(){
-        for (i = 0; i < gameSquare.length; i++)
+        for (let i = 0; i < gameSquare.length; i++)
         gameSquare[i].className = "game-square blue";
      }, 200);
 }
@@ -126,20 +121,21 @@ function flashSequence() {
         let flashSequenceTimeOut = setTimeout(function(){
 
             //-1 corrects sequence of flashes
-            flashSquareForSequence(gameSequence[i]-1)
+            flashSquareForSequence(gameSequence[i]-1);
 
             //+1 delays start time by 1 second
         }, 1000*(i+1.5));
 
-        flashSequenceTimeOut;
-
         //allows for reset button to stop sequence and round timer on click
         document.querySelector("#reset-button").addEventListener("click", function() {
             clearTimeout(flashSequenceTimeOut);
+            clearTimeout(checkFlashingTimeout);
+            isNotFlashing();
+            checkIfFlashing();
         });
 
         //runs isNotFlashing after sequence has stopped
-        setTimeout( isNotFlashing, 1000 * (gameSequence.length + 1) )
+        setTimeout( isNotFlashing, 1000 * (gameSequence.length + 1) );
         
     }
     //runs checkIfFlashing after sequence has stopped
@@ -151,7 +147,7 @@ function flashSequence() {
 function checkIfFlashing() {
     if (sequenceFlashing == true) {
             console.log("sequence flashing");
-            removeGameSquareEventListener()
+            removeGameSquareEventListener();
 
         } else if (sequenceFlashing == false) {
             console.log("sequence not flashing");
@@ -172,6 +168,7 @@ function flashSquareForSequence(i) {
 
     gameSquare[i].className += " flash";
     gameSquareBlue();
+    pop.play();
 }
 
 //flashes selected square
@@ -181,10 +178,16 @@ function flashSquare() {
     gameSquareBlue();
 }
 
+//plays popping sfx
+function playPopSfx () {
+    let pop = document.querySelector("#pop");
+    pop.play();
+}
+
 //adds the integer of selected game square to player sequence array
 function createPlayerSequence() {
     // '+' turns dataset.square from a string into an intager
-    let squareNumber = +event.currentTarget.dataset.square
+    let squareNumber = +event.currentTarget.dataset.square;
     playerSequence.push(squareNumber);
     console.log(playerSequence);
 }
@@ -197,7 +200,7 @@ function checkSequences() {
         if (playerSequence.toString() === gameSequence.toString()) {
             //increments round and shows the next incrememnted sequence
             console.log("correct!");
-            success();
+            correct();
             incrementRound();
             flashSequence();
             playerSequence = [];
@@ -212,44 +215,39 @@ function checkSequences() {
                 //resets players sequence and round score. starts new game
                 console.log("incorrect!");
                 clickPlayAgainButton();
+                document.querySelector("#fail").play();
             }
-        }
-    }
-
-    if (playerSequence.length < gameSequence.length) {
-        //ends game if player out of lives
-        if (!+lives.children.length > 0) {
-            clickPlayAgainButton();
-        } else {
-            console.log("click more squares");
         }
     }
 }
 //flashes well done message
-function success () {
+function correct () {
+    document.querySelector("#correct").play();
     setTimeout (function () {
-    flashSquaresSuccess();
-    }, 500);
+    flashSquaresCorrect();
+    }, 600);
 
 }
 //flashed try again message
 function fail () {
     setTimeout (function () {
-    flashSquaresFail();
+    flashSquaresIncorrect();
     }, 500);
 }
 //flashes game squares green
-function flashSquaresSuccess () {
-    for (i = 0; i < gameSquare.length; i++) {
+function flashSquaresCorrect () {
+    document.querySelector("#correct").play();
+    for (let i = 0; i < gameSquare.length; i++) {
         
-        gameSquare[i].className += " flash-success";
+        gameSquare[i].className += " flash-correct";
 
         gameSquareBlue();
     }
 }
 //flashes game squares red
-function flashSquaresFail () {
-    for (i = 0; i < gameSquare.length; i++) {
+function flashSquaresIncorrect () {
+    document.querySelector("#incorrect").play();
+    for (let i = 0; i < gameSquare.length; i++) {
         
         gameSquare[i].className += " flash-fail";
 
@@ -259,17 +257,17 @@ function flashSquaresFail () {
 
 // generates 1 random number between 1 and max number of game squares, adds to current sequence.
 function incrementSequence() {
-    let randomNum = Math.floor(Math.random() * gameSquare.length + 1)
+    let randomNum = Math.floor(Math.random() * gameSquare.length + 1);
     gameSequence.push(randomNum);
     console.log(gameSequence);
 }
 
 //increment current round by 1 and calls incrememntSequence
 function incrementRound() {
-    //delays function to align with green 'success' flash
+    //delays function to align with green 'correct' flash
    setTimeout( function() {
-        currentRound.innerHTML++
-
+        currentRound.innerHTML++;
+        //incrememnts highscore to highest round reached
         if (+currentRound.innerHTML > +highScore.innerHTML) {
             highScore.innerHTML = currentRound.innerHTML;
         }
@@ -280,10 +278,7 @@ function incrementRound() {
 
     incrementSequence();
 }
-//incements high score
-function incrementHighScore() {
-    hightScore.innerHTML++
-}
+
 //increments lives if player reaches round 5 and 10
 function incrementLives () {
     if (currentRound.innerHTML === "5" || currentRound.innerHTML === "10" ) {
@@ -302,7 +297,7 @@ function decrementLives () {
 //bring up play again modal 
 function clickPlayAgainButton () {
 
-    document.querySelector("#play-again-hidden-btn").click()
+    document.querySelector("#play-again-hidden-btn").click();
 
 }
 //resets game sequence/player sequence/round/lives
@@ -310,6 +305,7 @@ function reset () {
     gameSequence = [];
     playerSequence = [];
     currentRound.innerHTML = 0;
+    isNotFlashing();
     lives.innerHTML = `<i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i>`;
     startButton.className = "btn button-dark-blue main-buttons";
 }
@@ -376,12 +372,32 @@ function removeGameSquareEventListener () {
         
     }
 }
-
+//toggles background music on or off
+function toggleMusic () {
+    let music = document.querySelector("#calm");
+    
+    let soundBtn = document.querySelector("#soundButton")
+    
+    if (music.paused) {
+        music.play();
+        music.volume = 0.5;
+        soundBtn.className = "fas fa-volume-up";
+    } else {
+        music.pause();
+        soundBtn.className = "fas fa-volume-mute";
+    }
+    
+    
+}
 
 //------------------------event listeners----------------
 
+//listens for if speaker button clicked
+document.querySelector("#soundButton").addEventListener("click", toggleMusic);
+
+
 //listen for which difficulty setting is clicked
-for(i = 0; i < dificultyLevel.children.length; i++)
+for(let i = 0; i < dificultyLevel.children.length; i++)
 dificultyLevel.children[i].addEventListener("click", changeDificulty);
 
 //listening for if start button is clicked
@@ -406,6 +422,7 @@ document.querySelector("#clearHighScore").addEventListener("click", clearHighSco
         gameSquare[i].addEventListener("click", flashSquare);
         gameSquare[i].addEventListener("click", createPlayerSequence);
         gameSquare[i].addEventListener("click", checkSequences);
+        gameSquare[i].addEventListener("click", playPopSfx);
     }
 
 //runs function if screensize is below 750px

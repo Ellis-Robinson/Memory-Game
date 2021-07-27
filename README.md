@@ -80,7 +80,7 @@ The page was kept simple and is responsive across all screen sizes using a mix o
 
 ### Libraries
 
-- [Bootstrap](https://getbootstrap.com/) 
+- [Bootstrap](https://getbootstrap.com/)
     
     - All the main buttons (with some size and color adaptations).
     
@@ -89,6 +89,12 @@ The page was kept simple and is responsive across all screen sizes using a mix o
 - [Animate.css](https://animate.style/)
 
     - Animations for game squares when transitioning between difficulty levels.
+
+### Tools
+
+- [converto](https://s4.converto.io/en15/download-redirect/?id=2aljibOM7a9fTtFswgEuKBIK09wjx3ed)
+
+    - used to convert youtube clips to mp3 files to be used as sound effects.
 
 ## credits
  
@@ -107,3 +113,14 @@ The page was kept simple and is responsive across all screen sizes using a mix o
 
     - Cloud background - [google Images](https://www.google.com/search?q=cartoon+clouds&hl=en&tbm=isch&sxsrf=ALeKk03lkx5g73rFvkKzLWvcBOTIPGGN-Q%3A1627297410725&source=hp&biw=1280&bih=881&ei=gpb-YP_oJM_WgQbAt67gAg&oq=cartoon+clouds&gs_lcp=CgNpbWcQAzIECCMQJzIECCMQJzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAOgcIIxDqAhAnOggIABCxAxCDAToFCAAQsQNQgA9YjiVg1StoAXAAeACAAWyIAfcGkgEEMTMuMZgBAKABAaoBC2d3cy13aXotaW1nsAEK&sclient=img&ved=0ahUKEwj_semgy4DyAhVPa8AKHcCbCywQ4dUDCAc&uact=5)
 
+- Sounds
+
+    - [Game square sound](https://www.youtube.com/watch?v=wJaOs-s-cGU)
+
+    - [Correct sequence sound](https://www.youtube.com/watch?v=3wr8ntTQaeA)
+
+    -[Incorrect sequence sound](https://www.youtube.com/watch?v=PdNb0r_n2mo) 
+
+    -[Play again modal sound](https://www.youtube.com/watch?v=1ar7fqJXD50)
+
+    - [Background music](https://www.youtube.com/watch?v=zPyg4N7bcHM&t=53s)
