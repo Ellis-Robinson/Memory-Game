@@ -8,6 +8,48 @@ This is the second milestone project in my full stack development cou
 
 I have created a simple memory game, where the user will be shown a flashing sequence and then have to repeat the sequence back to the game. The sequence will get progressively harder as the game continues.
 
+# Contents
+
+* [User Stories](#user-stories)
+
+* [Design](#design)
+
+    - [Wireframes](#wireframes)
+    - [Color Scheme](#color-scheme)
+    - [Typography](#typography)
+
+* [Features](#features)
+
+    - [Nav Section](#nav-section)
+    - [Game Section](#game-section)
+    - [Score Section](#score-section)
+
+    - [Future features](#future-features)
+
+* [Technologies](#technologies)
+
+    - [Languages](#Languages)
+    - [Libraries](#Libraries)
+    - [Tools](#tools)
+
+* [Testing](#testing)
+
+    - [User Stories](#user-stories)
+    - [Feature Testing](#feature-testing)
+    - [Responsiveness](#responsiveness)
+    - [Code Validation](#code-validation)
+
+* [Deployment](#deployment)
+
+    - [Initial Creation](#initial-creation)
+    - [Github Pages](#github-pages)
+    - [Forking the Github Repository](forking-the-github-repository)
+    - [Making a Clone](#making-a-clone)
+
+* [Bugs and Fixe](#bugs-and-fixes)
+
+* [Credits](#credits)
+
 # User stories
 
 1. I want a clear good looking landing page
