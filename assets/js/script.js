@@ -358,7 +358,7 @@ function addGameSquareEventListener () {
         gameSquare[i].addEventListener("click", flashSquare);
         gameSquare[i].addEventListener("click", createPlayerSequence);
         gameSquare[i].addEventListener("click", checkSequences);
-        
+        gameSquare[i].addEventListener("click", playPopSfx);
     }
 }
 //removes event handler for current game squares
@@ -369,7 +369,7 @@ function removeGameSquareEventListener () {
         gameSquare[i].removeEventListener("click", flashSquare);
         gameSquare[i].removeEventListener("click", createPlayerSequence);
         gameSquare[i].removeEventListener("click", checkSequences);
-        
+        gameSquare[i].removeEventListener("click", playPopSfx);
     }
 }
 //toggles background music on or off
@@ -394,7 +394,6 @@ function toggleMusic () {
 
 //listens for if speaker button clicked
 document.querySelector("#soundButton").addEventListener("click", toggleMusic);
-
 
 //listen for which difficulty setting is clicked
 for(let i = 0; i < dificultyLevel.children.length; i++)
