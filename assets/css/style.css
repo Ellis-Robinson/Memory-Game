@@ -73,7 +73,7 @@ border-color: #026b95;
     justify-content: center;
     height: fit-content;
     width: 90vw;
-    margin: 5% 5% 0% 5%;
+    margin: 0% 5%;
 }
 .game-rows {
   height: 50%;
@@ -101,7 +101,7 @@ border-color: #026b95;
   background-color: rgb(67, 193, 225);
   border-color: rgb(39, 143, 185);
 }
-.flash-success {
+.flash-correct {
   box-shadow: 0 0 10px 15px rgba(0, 193, 16, 0.85); 
 }
 .flash-fail {
@@ -113,7 +113,7 @@ border-color: #026b95;
 }
 
 
-.success-glow {
+.correct-glow {
   text-shadow: 0px 0px 5px rgb(44, 200, 37);
 }
 
@@ -121,6 +121,19 @@ border-color: #026b95;
 .red-heart {
   color: #ff0000;
   text-shadow: 0px 0px 5px white;
+}
+
+#clearHighScore {
+  position: relative;
+  right: 58px;
+  margin-right: -58px;
+  font-size: small;
+  padding: 3px 6px;
+}
+
+.glow {
+  font-size: 25px;
+  text-shadow: 0 0 8px white;
 }
 
 /*-------------------media Queries*/
