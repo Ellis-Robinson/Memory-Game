@@ -139,11 +139,23 @@ function flashSequence() {
             checkIfFlashing();
         });
 
+        document.querySelectorAll(".dropdown-item")[0].addEventListener("click", function () {
+            clearTimeout(flashSequenceTimeOut);
+            clearTimeout(checkFlashingTimeout);
+        })
+        document.querySelectorAll(".dropdown-item")[1].addEventListener("click", function () {
+            clearTimeout(flashSequenceTimeOut);
+            clearTimeout(checkFlashingTimeout);
+        })
+        document.querySelectorAll(".dropdown-item")[2].addEventListener("click", function () {
+            clearTimeout(flashSequenceTimeOut);
+            clearTimeout(checkFlashingTimeout);
+        })
+
         //runs isNotFlashing after sequence has stopped
         setTimeout(isNotFlashing, 1000 * (gameSequence.length + 1));
 
     }
-
 
 
     //runs checkIfFlashing after sequence has stopped
@@ -332,21 +344,36 @@ function reset() {
 //reconfigurs game area for current difficulty
 function changeDificulty() {
     reset();
-    document.querySelector("#difficulty-setting").innerHTML = this.innerHTML;
-    if (this.innerHTML === "Easy") {
+    let difficultySetting = document.querySelector("#difficulty-setting");
+    if (difficultySetting.innerHTML === "Easy") {
         //creates new game section layout with 4 squares
         mainGameSection.innerHTML = easyConfig;
         addGameSquareEventListener();
 
-    } else if (this.innerHTML === "Medium") {
+    } else if (difficultySetting.innerHTML === "Medium") {
         //creates new game section layout with 9 squares
         mainGameSection.innerHTML = mediumConfig;
         addGameSquareEventListener();
 
-    } else if (this.innerHTML === "Hard") {
+    } else if (difficultySetting.innerHTML === "Hard") {
         //creates new game section layout with 16 squares
         mainGameSection.innerHTML = hardConfig;
         addGameSquareEventListener();
+    }
+}
+//keeps difficulty level as is and flashed the sequence again.
+function dontChangeDifficulty() {
+    if (gameSequence.length > 0) {
+        flashSequence();
+    }
+    let difficultySetting = document.querySelector("#difficulty-setting");
+    
+    if (mainGameSection.innerHTML === easyConfig) {
+        difficultySetting.innerHTML = "Easy";
+    } else if (mainGameSection.innerHTML === mediumConfig) {
+        difficultySetting.innerHTML = "Medium";
+    } else if (mainGameSection.innerHTML === hardConfig) {
+        difficultySetting.innerHTML = "Hard";
     }
 }
 //changes from medium to easy config if screen size below 315px
@@ -411,9 +438,17 @@ function toggleMusic() {
 //listens for if speaker button clicked
 document.querySelector("#soundButton").addEventListener("click", toggleMusic);
 
-//listen for which difficulty setting is clicked
+//listen for which difficulty setting is clicked and changes inner HTML of difficulty setting
 for (let i = 0; i < dificultyLevel.children.length; i++)
-    dificultyLevel.children[i].addEventListener("click", changeDificulty);
+    dificultyLevel.children[i].addEventListener("click", function () {
+        document.querySelector("#difficulty-setting").innerHTML = this.innerHTML;
+    });
+
+//changes difficulty if user selects yes in change difficulty modal
+document.querySelector("#change-difficulty-yes-button").addEventListener("click", changeDificulty);
+
+//keeps difficulty the same if user selects no in change difficulty modal
+document.querySelector("#change-difficulty-no-button").addEventListener("click", dontChangeDifficulty);
 
 //listening for if start button is clicked
 startButton.addEventListener("click", startGame);

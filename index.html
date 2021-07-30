@@ -93,37 +93,64 @@
         </div>
         <!--restart button-->
         <div id="reset-button-div" class="col-3 center hidden absolute">
-            <button id="reset-button" type="button" class="btn button-dark-blue"  data-bs-toggle="modal" data-bs-target="#reset-modal">Reset</button>
+            <button id="reset-button" type="button" class="btn button-dark-blue" data-bs-toggle="modal"
+                data-bs-target="#reset-modal">Reset</button>
         </div>
         <!--reset modal -->
         <div class="modal fade" id="reset-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel-reset" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel-">Reset?</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Are you sure you want to reset? this will end your current game.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" id="restart-yes-button" class="btn btn-secondary" data-bs-dismiss="modal">Yes</button>
-                            <button type="button" id="restart-no-button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                        </div>
+            aria-labelledby="staticBackdropLabel-reset" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel-reset">Reset?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to reset? this will end your current game.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="restart-yes-button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Yes</button>
+                        <button type="button" id="restart-no-button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">No</button>
                     </div>
                 </div>
             </div>
+        </div>
 
         <div class="col-3 center">
             <button type="button" class="btn button-dark-blue dropdown-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false">Difficulty: <br> <span id="difficulty-setting">Easy</span>
             </button>
             <ul id="difficulty-ul" class="dropdown-menu">
-                <li class="dropdown-item">Easy</li>
-                <li class="dropdown-item dif-md">Medium</li>
-                <li class="dropdown-item dif-hard">Hard</li>
+                <li class="dropdown-item" data-bs-toggle="modal"
+                data-bs-target="#change-dfficulty-modal">Easy</li>
+                <li class="dropdown-item dif-md" data-bs-toggle="modal"
+                data-bs-target="#change-dfficulty-modal">Medium</li>
+                <li class="dropdown-item dif-hard" data-bs-toggle="modal"
+                data-bs-target="#change-dfficulty-modal">Hard</li>
             </ul>
+
+            <div class="modal fade" id="change-dfficulty-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel-change-difficulty" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel-change-difficulty">Change Difficulty</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to change difficulty? this will end your current game.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="change-difficulty-yes-button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Yes</button>
+                        <button type="button" id="change-difficulty-no-button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
     <!--sound effects for main game area-->
@@ -145,7 +172,7 @@
     <!--section with round and highscore-->
     <div class="margin-bottom">
         <div class="center margin-bottom">
-            <audio id="calm" >
+            <audio id="calm">
                 <source src="assets/sfx/calm.mp3" type="audio/mp3">
             </audio>
             <i id="soundButton" class="glow fas fa-volume-mute"></i>
@@ -158,7 +185,7 @@
         </div>
         <div class="center">
             <h4>Lives Left: <span id="lives">
-                    <i class="fas fa-heart red-heart"></i>  
+                    <i class="fas fa-heart red-heart"></i>
                     <i class="fas fa-heart red-heart"></i>
                     <i class="fas fa-heart red-heart"></i>
                 </span></h4>
@@ -166,7 +193,7 @@
     </div>
 
     <div id="player-prompt" class="center hidden prompt">
-         Pay attention.. 
+        Pay attention..
     </div>
     <!--main game section-->
     <div id="main-game-section" class="game-area">
