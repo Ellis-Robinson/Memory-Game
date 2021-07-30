@@ -27,13 +27,13 @@
 <body>
     <!--top section with three buttons-->
     <div class="row function-buttons center">
-        <div class="col-4 center">
+        <div class="col-3 center">
             <!-- Rule Button to trigger modal -->
             <button type="button" class="btn button-dark-blue" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Rules
             </button>
 
-            <!-- Modal -->
+            <!-- Rules Modal -->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                 aria-labelledby="staticBackdropLabel-rules" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -60,34 +60,16 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-4 center">
-            <button id="reset-button" type="button" class="btn button-dark-blue">Reset</button>
-        </div>
-
-        <div class="col-4 center">
-            <button type="button" class="btn button-dark-blue dropdown-toggle" data-bs-toggle="dropdown"
-                aria-expanded="false">Difficulty: <br> <span id="difficulty-setting">Easy</span>
-            </button>
-            <ul id="difficulty-ul" class="dropdown-menu">
-                <li class="dropdown-item">Easy</li>
-                <li class="dropdown-item dif-md">Medium</li>
-                <li class="dropdown-item dif-hard">Hard</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="row function-buttons center">
-
-        <div class="col-4 center">
-            <button id="start-btn" type="button" class="btn button-dark-blue main-buttons">PLAY!</button>
+        <!--Start button-->
+        <div id="start-button-div" class="col-3 center ">
+            <button id="start-button" type="button" class="btn button-dark-blue main-buttons">PLAY!</button>
             <!--hidden play again button-->
             <button id="play-again-hidden-btn" type="button" class="btn button-dark-blue hidden" data-bs-toggle="modal"
                 data-bs-target="#play-again-modal" aria-hidden="true">
                 Play again
             </button>
 
-            <!-- Modal -->
+            <!-- play again Modal -->
             <div class="modal fade" id="play-again-modal" data-bs-backdrop="static" data-bs-keyboard="false"
                 tabindex="-1" aria-labelledby="staticBackdropLabel-playagain" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
@@ -109,6 +91,40 @@
                 </div>
             </div>
         </div>
+        <!--restart button-->
+        <div id="reset-button-div" class="col-3 center hidden absolute">
+            <button id="reset-button" type="button" class="btn button-dark-blue"  data-bs-toggle="modal" data-bs-target="#reset-modal">Reset</button>
+        </div>
+        <!--reset modal -->
+        <div class="modal fade" id="reset-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel-reset" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel-">Reset?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to reset? this will end your current game.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="restart-yes-button" class="btn btn-secondary" data-bs-dismiss="modal">Yes</button>
+                            <button type="button" id="restart-no-button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="col-3 center">
+            <button type="button" class="btn button-dark-blue dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">Difficulty: <br> <span id="difficulty-setting">Easy</span>
+            </button>
+            <ul id="difficulty-ul" class="dropdown-menu">
+                <li class="dropdown-item">Easy</li>
+                <li class="dropdown-item dif-md">Medium</li>
+                <li class="dropdown-item dif-hard">Hard</li>
+            </ul>
+        </div>
     </div>
     <!--sound effects for main game area-->
     <div>
@@ -125,25 +141,19 @@
             <source src="assets/sfx/fail.mp3" type="audio/mp3">
         </audio>
     </div>
-    <!--main game section-->
-    <div id="main-game-section" class="game-area">
-        <div id="game-area-easy" class="animate__animated animate__zoomIn">
-            <!--game squares (easy)-->
-            <div id="game-square-1" data-square="1" class="game-square blue"></div>
-            <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
-            <div id="game-square-3" data-square="3" class="game-square blue"></div>
-            <div id="game-square-4" data-square="4" class="game-square blue"></div>
+
+    <!--section with round and highscore-->
+    <div class="margin-bottom">
+        <div class="center margin-bottom">
+            <audio id="calm" >
+                <source src="assets/sfx/calm.mp3" type="audio/mp3">
+            </audio>
+            <i id="soundButton" class="glow fas fa-volume-mute"></i>
         </div>
-    </div>
-    <!--bottom section with round and highscore-->
-    <div>
         <div class="center">
             <h4>Round: <span id="currentRound">0</span></h4>
         </div>
         <div class="center">
-            <div>
-               <button id="clearHighScore" type="button" class="btn button-dark-blue main-buttons">Clear</button>
-            </div>
             <h4>High Score: <span id="highScore">0</span></h4>
         </div>
         <div class="center">
@@ -153,11 +163,19 @@
                     <i class="fas fa-heart red-heart"></i>
                 </span></h4>
         </div>
-        <div class="center">
-            <audio id="calm" >
-                <source src="assets/sfx/calm.mp3" type="audio/mp3">
-            </audio>
-            <i id="soundButton" class="glow fas fa-volume-mute"></i>
+    </div>
+
+    <div id="player-prompt" class="center hidden prompt">
+         Pay attention.. 
+    </div>
+    <!--main game section-->
+    <div id="main-game-section" class="game-area">
+        <div id="game-area-easy" class="animate__animated animate__zoomIn">
+            <!--game squares (easy)-->
+            <div id="game-square-1" data-square="1" class="game-square blue"></div>
+            <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
+            <div id="game-square-3" data-square="3" class="game-square blue"></div>
+            <div id="game-square-4" data-square="4" class="game-square blue"></div>
         </div>
     </div>
     <script src="assets/js/script.js"></script>
