@@ -130,17 +130,13 @@ border-color: #026b95;
 }
 
 /*----------------------------score info section*/
+#lives {
+  font-size: 30px;
+}
 .red-heart {
   color: #ff0000;
   text-shadow: 0px 0px 5px white;
-}
-
-#clearHighScore {
-  position: relative;
-  right: 58px;
-  margin-right: -58px;
-  font-size: small;
-  padding: 3px 6px;
+  margin-right: 5px;
 }
 
 .glow {

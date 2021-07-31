@@ -87,8 +87,7 @@ function startGame() {
     playerSequence = [];
     gameSequence = [];
     currentRound.innerHTML = 0;
-    lives.innerHTML = `<i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i>`;
-
+    resetLives();
     createSequence();
     flashSequence();
 }
@@ -235,7 +234,7 @@ function checkSequences() {
             playerSequence = [];
         } else {
             //removes one life, clears players sequence and replays game sequence
-            if (+lives.children.length > 0) {
+            if (+lives.children.length > 1) {
                 fail();
                 playerSequence = [];
                 decrementLives();
@@ -243,6 +242,7 @@ function checkSequences() {
             } else {
                 //resets players sequence and round score. starts new game
                 console.log("incorrect!");
+                reset();
                 clickPlayAgainButton();
                 document.querySelector("#fail").play();
             }
@@ -300,9 +300,9 @@ function incrementRound() {
         if (+currentRound.innerHTML > +highScore.innerHTML) {
             highScore.innerHTML = currentRound.innerHTML;
         }
-
+        if (+currentRound.innerHTML === 5 || +currentRound.innerHTML === 10) {
         incrementLives();
-
+        }
     }, 500);
 
     incrementSequence();
@@ -310,9 +310,9 @@ function incrementRound() {
 
 //increments lives if player reaches round 5 and 10
 function incrementLives() {
-    if (currentRound.innerHTML === "5" || currentRound.innerHTML === "10") {
-        lives.innerHTML += ` <i class="fas fa-heart red-heart"></i>`;
-    }
+        let oneLife = document.createElement("I");
+        oneLife.className = "fas fa-heart red-heart";
+        lives.appendChild(oneLife);
 }
 //decrements lives
 function decrementLives() {
@@ -335,10 +335,17 @@ function reset() {
     playerSequence = [];
     currentRound.innerHTML = 0;
     isNotFlashing();
-    lives.innerHTML = `<i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i> <i class="fas fa-heart red-heart"></i>`;
+    resetLives();
     document.querySelector("#start-button-div").className = "col-3 center";
     document.querySelector("#reset-button-div").className = "col-3 center hidden absolute"
-    document.querySelector("#player-prompt").className = "center animate__swing hidden"
+    document.querySelector("#player-prompt").className = "center hidden"
+}
+
+function resetLives() {
+    lives.innerHTML = "";
+    for (let i = 0; i < 3; i++) {
+        incrementLives();
+    }
 }
 
 //reconfigurs game area for current difficulty
@@ -367,7 +374,7 @@ function dontChangeDifficulty() {
         flashSequence();
     }
     let difficultySetting = document.querySelector("#difficulty-setting");
-    
+
     if (mainGameSection.innerHTML === easyConfig) {
         difficultySetting.innerHTML = "Easy";
     } else if (mainGameSection.innerHTML === mediumConfig) {
@@ -392,6 +399,7 @@ function removeHardConfig() {
         document.querySelector("#difficulty-setting").innerHTML = "Medium";
     }
 }
+
 
 //creates event hadler for current game squares
 function addGameSquareEventListener() {
@@ -434,51 +442,61 @@ function toggleMusic() {
 }
 
 //------------------------event listeners----------------
+window.onload = function () {
 
-//listens for if speaker button clicked
-document.querySelector("#soundButton").addEventListener("click", toggleMusic);
+    resetLives();
 
-//listen for which difficulty setting is clicked and changes inner HTML of difficulty setting
-for (let i = 0; i < dificultyLevel.children.length; i++)
-    dificultyLevel.children[i].addEventListener("click", function () {
-        document.querySelector("#difficulty-setting").innerHTML = this.innerHTML;
-    });
+    addGameSquareEventListener();
 
-//changes difficulty if user selects yes in change difficulty modal
-document.querySelector("#change-difficulty-yes-button").addEventListener("click", changeDificulty);
-
-//keeps difficulty the same if user selects no in change difficulty modal
-document.querySelector("#change-difficulty-no-button").addEventListener("click", dontChangeDifficulty);
-
-//listening for if start button is clicked
-startButton.addEventListener("click", startGame);
-
-//if play again button is clicked game will start again
-document.querySelector("#play-again-modal-btn").addEventListener("click", startGame);
-
-//clears stats if "no thanks" is selected at end of game
-document.querySelector("#no-thanks-modal-btn").addEventListener("click", reset);
-
-//clears stats if restart yes is clicked
-document.querySelector("#restart-yes-button").addEventListener("click", reset);
-
-//flashes sequence if player chose to not restart
-document.querySelector("#restart-no-button").addEventListener("click", flashSequence);
+    removeGameSquareEventListener();
 
 
+    //listens for if speaker button clicked
+    document.querySelector("#soundButton").addEventListener("click", toggleMusic);
 
-// listening for if game square is clicked
-gameSquare = document.querySelectorAll(".game-square");
+    //listen for which difficulty setting is clicked and changes inner HTML of difficulty setting
+    for (let i = 0; i < dificultyLevel.children.length; i++)
+        dificultyLevel.children[i].addEventListener("click", function () {
+            document.querySelector("#difficulty-setting").innerHTML = this.innerHTML;
+        });
 
-for (let i = 0; i < gameSquare.length; i++) {
-    gameSquare[i].addEventListener("click", flashSquare);
-    gameSquare[i].addEventListener("click", createPlayerSequence);
-    gameSquare[i].addEventListener("click", checkSequences);
-    gameSquare[i].addEventListener("click", playPopSfx);
-}
+    //changes difficulty if user selects yes in change difficulty modal
+    document.querySelector("#change-difficulty-yes-button").addEventListener("click", changeDificulty);
 
-//runs function if screensize is below 750px
-screenSizeMdSm.addListener(removeHardConfig);
+    //keeps difficulty the same if user selects no in change difficulty modal
+    document.querySelector("#change-difficulty-no-button").addEventListener("click", dontChangeDifficulty);
 
-//runs function if screensize is below 315px
-screenSizeSm.addListener(removeMediumConfig);
+    //listening for if start button is clicked
+    startButton.addEventListener("click", startGame);
+
+    //if play again button is clicked game will start again
+    document.querySelector("#play-again-modal-btn").addEventListener("click", startGame);
+
+    //clears stats if "no thanks" is selected at end of game
+    document.querySelector("#no-thanks-modal-btn").addEventListener("click", reset);
+
+    //clears stats if restart yes is clicked
+    document.querySelector("#restart-yes-button").addEventListener("click", reset);
+
+    //flashes sequence if player chose to not restart
+    document.querySelector("#restart-no-button").addEventListener("click", flashSequence);
+
+
+
+    // listening for if game square is clicked
+    gameSquare = document.querySelectorAll(".game-square");
+
+    for (let i = 0; i < gameSquare.length; i++) {
+        gameSquare[i].addEventListener("click", flashSquare);
+        gameSquare[i].addEventListener("click", createPlayerSequence);
+        gameSquare[i].addEventListener("click", checkSequences);
+        gameSquare[i].addEventListener("click", playPopSfx);
+    }
+
+    //runs function if screensize is below 750px
+    screenSizeMdSm.addListener(removeHardConfig);
+
+    //runs function if screensize is below 315px
+    screenSizeSm.addListener(removeMediumConfig);
+
+};
