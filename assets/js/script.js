@@ -4,52 +4,9 @@
 // - add reset highscore (clear stats)
 // - add function to display countdown timer
 // figure out how to change difficulty during a sequece and not cause console error
+// - figure out why difficulty change wont show new config
 
 let mainGameSection = document.querySelector("#main-game-section");
-
-let easyConfig = `<!--main game section, easy config-->
-<div id="game-area-easy" class="animate__animated animate__zoomIn">
-    <!--game squares (easy)-->
-        <div id="game-square-1" data-square="1" class="game-square blue"></div>
-        <div id="game-square-2" data-square="2" class="game-square blue"></div> <br>
-        <div id="game-square-3" data-square="3" class="game-square blue"></div>
-        <div id="game-square-4" data-square="4" class="game-square blue"></div>
-    </div>`;
-
-let mediumConfig = `<!--main game section, medium config-->
-<div id="game-area-medium" class="animate__animated animate__zoomIn">
-    <!--game squares (medium)-->
-        <div id="game-square-1" data-square="1" class="game-square blue"></div>
-        <div id="game-square-2" data-square="2" class="game-square blue"></div>
-        <div id="game-square-3" data-square="3" class="game-square blue"></div> <br>
-        <div id="game-square-4" data-square="4" class="game-square blue"></div>
-        <div id="game-square-5" data-square="5" class="game-square blue"></div>
-        <div id="game-square-6" data-square="6" class="game-square blue"></div> <br>
-        <div id="game-square-7" data-square="7" class="game-square blue"></div>
-        <div id="game-square-8" data-square="8" class="game-square blue"></div>
-        <div id="game-square-9" data-square="9" class="game-square blue"></div>
-    </div>`;
-
-let hardConfig = `<!--main game section, hard config-->
-<div id="game-area-hard" class="animate__animated animate__zoomIn">
-    <!--game squares (hard)-->
-        <div id="game-square-1" data-square="1" class="game-square blue"></div>
-        <div id="game-square-2" data-square="2" class="game-square blue"></div>
-        <div id="game-square-3" data-square="3" class="game-square blue"></div> 
-        <div id="game-square-4" data-square="4" class="game-square blue"></div> <br>
-        <div id="game-square-5" data-square="5" class="game-square blue"></div>
-        <div id="game-square-6" data-square="6" class="game-square blue"></div> 
-        <div id="game-square-7" data-square="7" class="game-square blue"></div>
-        <div id="game-square-8" data-square="8" class="game-square blue"></div> <br>
-        <div id="game-square-9" data-square="9" class="game-square blue"></div>
-        <div id="game-square-10" data-square="10" class="game-square blue"></div> 
-        <div id="game-square-11" data-square="11" class="game-square blue"></div>
-        <div id="game-square-12" data-square="12" class="game-square blue"></div> <br>
-        <div id="game-square-13" data-square="13" class="game-square blue"></div> 
-        <div id="game-square-14" data-square="14" class="game-square blue"></div>
-        <div id="game-square-15" data-square="15" class="game-square blue"></div>
-        <div id="game-square-16" data-square="16" class="game-square blue"></div>
-    </div>`;
 
 let gameSequence = [];
 
@@ -73,7 +30,6 @@ const lives = document.querySelector("#lives");
 
 const dificultyLevel = document.querySelector("#difficulty-ul");
 
-//make this work
 let difficultyDropdownOptions = document.querySelectorAll(".dropdown-item");
 
 
@@ -102,16 +58,26 @@ function createSequence() {
         gameSequence.push(randomNums);
     }
 
-    console.log(gameSequence);
 
 }
 //returns game squares to blue
 function gameSquareBlue() {
     setTimeout(function () {
-        for (let i = 0; i < gameSquare.length; i++)
-            gameSquare[i].className = "game-square blue";
+        for (let i = 0; i < gameSquare.length; i++){
+            gameSquare[i].classList.remove("flash");
+    }}, 200);
+}
+
+function removeCorrectAndFailFlash() {
+    setTimeout(function () {
+        for (let i = 0; i < gameSquare.length; i++){
+            gameSquare[i].classList.remove("flash-correct");
+            gameSquare[i].classList.remove("flash-fail");
+        }
     }, 200);
 }
+
+
 
 //targets game squares and flashes them in order of game sequence
 function flashSequence() {
@@ -165,8 +131,13 @@ function flashSequence() {
 //disableds game squares if sequence is flashing, adds event listeners if sequence isnt flashing
 function checkIfFlashing() {
     if (sequenceFlashing == true) {
-        console.log("sequence flashing");
-        removeGameSquareEventListener();
+        if (document.querySelector("#game-area-easy").className === "animate__animated animate__zoomIn") {
+            removeGameSquareEasyEventListener();
+        } else if (document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
+            removeGameSquaremediumEventListener();
+        } else if (document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
+            removeGameSquarehardEventListener();
+        }
         setTimeout(function () {
             let playerPrompt = document.querySelector("#player-prompt");
             playerPrompt.innerHTML = "Pay attention..";
@@ -176,10 +147,16 @@ function checkIfFlashing() {
 
     } else if (sequenceFlashing == false) {
         let playerPrompt = document.querySelector("#player-prompt");
-        console.log("sequence not flashing");
-        addGameSquareEventListener();
+        addGameSquareEasyEventListener();
         playerPrompt.innerHTML = "Go!";
         playerPrompt.className = "center animate__flash prompt";
+        if (document.querySelector("#game-area-easy").className === "animate__animated animate__zoomIn") {
+            addGameSquareEasyEventListener();
+        } else if (document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
+            addGameSquaremediumEventListener();
+        } else if (document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
+            addGameSquarehardEventListener();
+        }
     }
 }
 
@@ -217,17 +194,14 @@ function createPlayerSequence() {
     // '+' turns dataset.square from a string into an intager
     let squareNumber = +event.currentTarget.dataset.square;
     playerSequence.push(squareNumber);
-    console.log(playerSequence);
 }
 
 //if player sequence length is the same as game sequence length compare both, then clear player sequence
 function checkSequences() {
 
     if (playerSequence.length === gameSequence.length) {
-        console.log("sequences same length");
         if (playerSequence.toString() === gameSequence.toString()) {
             //increments round and shows the next incrememnted sequence
-            console.log("correct!");
             correct();
             incrementRound();
             flashSequence();
@@ -241,7 +215,6 @@ function checkSequences() {
                 flashSequence();
             } else {
                 //resets players sequence and round score. starts new game
-                console.log("incorrect!");
                 reset();
                 clickPlayAgainButton();
                 document.querySelector("#fail").play();
@@ -270,7 +243,7 @@ function flashSquaresCorrect() {
 
         gameSquare[i].className += " flash-correct";
 
-        gameSquareBlue();
+        removeCorrectAndFailFlash();
     }
 }
 //flashes game squares red
@@ -280,7 +253,7 @@ function flashSquaresIncorrect() {
 
         gameSquare[i].className += " flash-fail";
 
-        gameSquareBlue();
+        removeCorrectAndFailFlash();
     }
 }
 
@@ -288,7 +261,6 @@ function flashSquaresIncorrect() {
 function incrementSequence() {
     let randomNum = Math.floor(Math.random() * gameSquare.length + 1);
     gameSequence.push(randomNum);
-    console.log(gameSequence);
 }
 
 //increment current round by 1 and calls incrememntSequence
@@ -301,7 +273,7 @@ function incrementRound() {
             highScore.innerHTML = currentRound.innerHTML;
         }
         if (+currentRound.innerHTML === 5 || +currentRound.innerHTML === 10) {
-        incrementLives();
+            incrementLives();
         }
     }, 500);
 
@@ -310,9 +282,9 @@ function incrementRound() {
 
 //increments lives if player reaches round 5 and 10
 function incrementLives() {
-        let oneLife = document.createElement("I");
-        oneLife.className = "fas fa-heart red-heart";
-        lives.appendChild(oneLife);
+    let oneLife = document.createElement("I");
+    oneLife.className = "fas fa-heart red-heart";
+    lives.appendChild(oneLife);
 }
 //decrements lives
 function decrementLives() {
@@ -352,21 +324,37 @@ function resetLives() {
 function changeDificulty() {
     reset();
     let difficultySetting = document.querySelector("#difficulty-setting");
+    
+    if (difficultySetting.innerHTML === "Medium") {
+        //creates new game section layout with 9 squares
+        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn";
+        document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn hidden";
+        document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn hidden";
+
+        addGameSquareMediumEventListener();
+
+    }
+
     if (difficultySetting.innerHTML === "Easy") {
         //creates new game section layout with 4 squares
-        mainGameSection.innerHTML = easyConfig;
-        addGameSquareEventListener();
+        document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn";
+        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn hidden";
+        document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn hidden";
 
-    } else if (difficultySetting.innerHTML === "Medium") {
-        //creates new game section layout with 9 squares
-        mainGameSection.innerHTML = mediumConfig;
-        addGameSquareEventListener();
+        addGameSquareEasyEventListener();
 
-    } else if (difficultySetting.innerHTML === "Hard") {
-        //creates new game section layout with 16 squares
-        mainGameSection.innerHTML = hardConfig;
-        addGameSquareEventListener();
     }
+    
+    if (difficultySetting.innerHTML === "Hard") {
+        //creates new game section layout with 16 squares
+        document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn";
+        document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn hidden";
+        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn hidden";
+        
+        addGameSquareHardEventListener();
+    }
+
+    console.log("difficulty changed");
 }
 //keeps difficulty level as is and flashed the sequence again.
 function dontChangeDifficulty() {
@@ -375,35 +363,60 @@ function dontChangeDifficulty() {
     }
     let difficultySetting = document.querySelector("#difficulty-setting");
 
-    if (mainGameSection.innerHTML === easyConfig) {
+    if (document.querySelector("#game-area-easy").className === "animate__animated animate__zoomIn") {
         difficultySetting.innerHTML = "Easy";
-    } else if (mainGameSection.innerHTML === mediumConfig) {
+    } else if (document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
         difficultySetting.innerHTML = "Medium";
-    } else if (mainGameSection.innerHTML === hardConfig) {
+    } else if (document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
         difficultySetting.innerHTML = "Hard";
     }
 }
 //changes from medium to easy config if screen size below 315px
 function removeMediumConfig() {
-    if (screenSizeMdSm.matches && mainGameSection.innerHTML == mediumConfig) {
-        mainGameSection.innerHTML = easyConfig;
-        addGameSquareEventListener();
+    if (screenSizeMdSm.matches && document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
+        document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn"
+        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn hidden"
+        addGameSquareEasyEventListener();
         document.querySelector("#difficulty-setting").innerHTML = "Easy";
     }
 }
 //changes from hard to medium config if screen size below 750px
 function removeHardConfig() {
-    if (screenSizeMdSm.matches && mainGameSection.innerHTML == hardConfig) {
-        mainGameSection.innerHTML = mediumConfig;
-        addGameSquareEventListener();
+    if (screenSizeMdSm.matches && document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
+
+        addGameSquareMediumEventListener();
+        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn"
+        document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn hidden"
         document.querySelector("#difficulty-setting").innerHTML = "Medium";
     }
 }
 
 
 //creates event hadler for current game squares
-function addGameSquareEventListener() {
-    gameSquare = document.querySelectorAll(".game-square");
+function addGameSquareEasyEventListener() {
+    gameSquare = document.querySelectorAll(".game-square-easy");
+
+    for (let i = 0; i < gameSquare.length; i++) {
+        gameSquare[i].addEventListener("click", flashSquare);
+        gameSquare[i].addEventListener("click", createPlayerSequence);
+        gameSquare[i].addEventListener("click", checkSequences);
+        gameSquare[i].addEventListener("click", playPopSfx);
+    }
+}
+
+function addGameSquareMediumEventListener() {
+    gameSquare = document.querySelectorAll(".game-square-medium");
+
+    for (let i = 0; i < gameSquare.length; i++) {
+        gameSquare[i].addEventListener("click", flashSquare);
+        gameSquare[i].addEventListener("click", createPlayerSequence);
+        gameSquare[i].addEventListener("click", checkSequences);
+        gameSquare[i].addEventListener("click", playPopSfx);
+    }
+}
+
+function addGameSquareHardEventListener() {
+    gameSquare = document.querySelectorAll(".game-square-hard");
 
     for (let i = 0; i < gameSquare.length; i++) {
         gameSquare[i].addEventListener("click", flashSquare);
@@ -413,8 +426,30 @@ function addGameSquareEventListener() {
     }
 }
 //removes event handler for current game squares
-function removeGameSquareEventListener() {
-    gameSquare = document.querySelectorAll(".game-square");
+function removeGameSquareEasyEventListener() {
+    gameSquare = document.querySelectorAll(".game-square-easy");
+
+    for (let i = 0; i < gameSquare.length; i++) {
+        gameSquare[i].removeEventListener("click", flashSquare);
+        gameSquare[i].removeEventListener("click", createPlayerSequence);
+        gameSquare[i].removeEventListener("click", checkSequences);
+        gameSquare[i].removeEventListener("click", playPopSfx);
+    }
+}
+
+function removeGameSquareMediumEventListener() {
+    gameSquare = document.querySelectorAll(".game-square-Medium");
+
+    for (let i = 0; i < gameSquare.length; i++) {
+        gameSquare[i].removeEventListener("click", flashSquare);
+        gameSquare[i].removeEventListener("click", createPlayerSequence);
+        gameSquare[i].removeEventListener("click", checkSequences);
+        gameSquare[i].removeEventListener("click", playPopSfx);
+    }
+}
+
+function removeGameSquareHardEventListener() {
+    gameSquare = document.querySelectorAll(".game-square-Hard");
 
     for (let i = 0; i < gameSquare.length; i++) {
         gameSquare[i].removeEventListener("click", flashSquare);
@@ -446,10 +481,7 @@ window.onload = function () {
 
     resetLives();
 
-    addGameSquareEventListener();
-
-    removeGameSquareEventListener();
-
+    addGameSquareEasyEventListener();
 
     //listens for if speaker button clicked
     document.querySelector("#soundButton").addEventListener("click", toggleMusic);
@@ -480,18 +512,6 @@ window.onload = function () {
 
     //flashes sequence if player chose to not restart
     document.querySelector("#restart-no-button").addEventListener("click", flashSequence);
-
-
-
-    // listening for if game square is clicked
-    gameSquare = document.querySelectorAll(".game-square");
-
-    for (let i = 0; i < gameSquare.length; i++) {
-        gameSquare[i].addEventListener("click", flashSquare);
-        gameSquare[i].addEventListener("click", createPlayerSequence);
-        gameSquare[i].addEventListener("click", checkSequences);
-        gameSquare[i].addEventListener("click", playPopSfx);
-    }
 
     //runs function if screensize is below 750px
     screenSizeMdSm.addListener(removeHardConfig);

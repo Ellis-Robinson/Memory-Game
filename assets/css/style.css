@@ -90,7 +90,9 @@ border-color: #026b95;
 .game-rows {
   height: 50%;
 }
-.game-square {
+.game-square-easy,
+.game-square-medium,
+.game-square-hard {
   display: inline-block;
   width: 80px;
   height: 80px;
@@ -152,7 +154,9 @@ border-color: #026b95;
   }
 }
 @media screen and (min-width: 440px){
-  .game-square {
+.game-square-easy,
+.game-square-medium,
+.game-square-hard {
     width: 110px;
     height: 110px;
   }
@@ -161,7 +165,9 @@ border-color: #026b95;
 
 
 @media screen and (min-width: 750px) {
-  .game-square {
+.game-square-easy,
+.game-square-medium,
+.game-square-hard{
     width: 150px;
     height: 150px;
   }
