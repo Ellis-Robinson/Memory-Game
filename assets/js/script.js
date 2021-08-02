@@ -63,14 +63,16 @@ function createSequence() {
 //returns game squares to blue
 function gameSquareBlue() {
     setTimeout(function () {
-        for (let i = 0; i < gameSquare.length; i++){
+        for (let i = 0; i < gameSquare.length; i++) {
             gameSquare[i].classList.remove("flash");
-    }}, 200);
+        }
+    }, 200);
+    console.log("gameSquareBlue called");
 }
 
 function removeCorrectAndFailFlash() {
     setTimeout(function () {
-        for (let i = 0; i < gameSquare.length; i++){
+        for (let i = 0; i < gameSquare.length; i++) {
             gameSquare[i].classList.remove("flash-correct");
             gameSquare[i].classList.remove("flash-fail");
         }
@@ -81,7 +83,6 @@ function removeCorrectAndFailFlash() {
 
 //targets game squares and flashes them in order of game sequence
 function flashSequence() {
-
     isFlashing();
 
     checkIfFlashing();
@@ -134,9 +135,9 @@ function checkIfFlashing() {
         if (document.querySelector("#game-area-easy").className === "animate__animated animate__zoomIn") {
             removeGameSquareEasyEventListener();
         } else if (document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
-            removeGameSquaremediumEventListener();
+            removeGameSquareMediumEventListener();
         } else if (document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
-            removeGameSquarehardEventListener();
+            removeGameSquareHardEventListener();
         }
         setTimeout(function () {
             let playerPrompt = document.querySelector("#player-prompt");
@@ -153,9 +154,9 @@ function checkIfFlashing() {
         if (document.querySelector("#game-area-easy").className === "animate__animated animate__zoomIn") {
             addGameSquareEasyEventListener();
         } else if (document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
-            addGameSquaremediumEventListener();
+            addGameSquareMediumEventListener();
         } else if (document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
-            addGameSquarehardEventListener();
+            addGameSquareHardEventListener();
         }
     }
 }
@@ -170,10 +171,25 @@ function isNotFlashing() {
 
 //flashes squares in game sequence 
 function flashSquareForSequence(i) {
+    let difficultySetting = document.querySelector("#difficulty-setting");
 
-    gameSquare[i].className += " flash";
-    gameSquareBlue();
-    playPopSfx();
+    if (difficultySetting.innerHTML === "Easy") {
+        let gameSquare = document.querySelectorAll(".game-square-easy")
+        gameSquare[i].className += " flash";
+        gameSquareBlue();
+        playPopSfx();
+    } else if (difficultySetting.innerHTML === "Medium") {
+        let gameSquare = document.querySelectorAll(".game-square-medium")
+        gameSquare[i].className += " flash";
+        gameSquareBlue();
+        playPopSfx();
+    } else if (difficultySetting.innerHTML === "Hard") {
+        let gameSquare = document.querySelectorAll(".game-square-hard")
+        gameSquare[i].className += " flash";
+        gameSquareBlue();
+        playPopSfx();
+    }
+
 }
 
 //flashes selected square
@@ -321,10 +337,10 @@ function resetLives() {
 }
 
 //reconfigurs game area for current difficulty
-function changeDificulty() {
+function changeDifficulty() {
     reset();
     let difficultySetting = document.querySelector("#difficulty-setting");
-    
+
     if (difficultySetting.innerHTML === "Medium") {
         //creates new game section layout with 9 squares
         document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn";
@@ -344,17 +360,16 @@ function changeDificulty() {
         addGameSquareEasyEventListener();
 
     }
-    
+
     if (difficultySetting.innerHTML === "Hard") {
         //creates new game section layout with 16 squares
         document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn";
         document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn hidden";
         document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn hidden";
-        
+
         addGameSquareHardEventListener();
     }
 
-    console.log("difficulty changed");
 }
 //keeps difficulty level as is and flashed the sequence again.
 function dontChangeDifficulty() {
@@ -438,7 +453,7 @@ function removeGameSquareEasyEventListener() {
 }
 
 function removeGameSquareMediumEventListener() {
-    gameSquare = document.querySelectorAll(".game-square-Medium");
+    gameSquare = document.querySelectorAll(".game-square-medium");
 
     for (let i = 0; i < gameSquare.length; i++) {
         gameSquare[i].removeEventListener("click", flashSquare);
@@ -449,7 +464,7 @@ function removeGameSquareMediumEventListener() {
 }
 
 function removeGameSquareHardEventListener() {
-    gameSquare = document.querySelectorAll(".game-square-Hard");
+    gameSquare = document.querySelectorAll(".game-square-hard");
 
     for (let i = 0; i < gameSquare.length; i++) {
         gameSquare[i].removeEventListener("click", flashSquare);
@@ -493,7 +508,7 @@ window.onload = function () {
         });
 
     //changes difficulty if user selects yes in change difficulty modal
-    document.querySelector("#change-difficulty-yes-button").addEventListener("click", changeDificulty);
+    document.querySelector("#change-difficulty-yes-button").addEventListener("click", changeDifficulty);
 
     //keeps difficulty the same if user selects no in change difficulty modal
     document.querySelector("#change-difficulty-no-button").addEventListener("click", dontChangeDifficulty);
