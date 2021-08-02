@@ -320,7 +320,7 @@ To make a clone of my project use the following steps:
                 
             }
 
-- bug: You can click squares whilst the sequence is flashing.
+- Bug: You can click squares whilst the sequence is flashing.
 - Fix: added functions that identified if the sequence is flashing or not. Then added and removed event listener's dynamically depending on state.
 
         //disableds game squares if sequence is flashing, adds event listeners if sequence isnt flashing
@@ -343,8 +343,8 @@ To make a clone of my project use the following steps:
             sequenceFlashing = false;
         }
 
-- bug: game sequence not flashing last square in sequence
-- fix: the problem was that when I delayed the round increase by 500ms so it aligned with the 'success' flash via a setTimeout, I also delayed the game sequence increase. This meant that the flashSequence function was called 500ms before the sequence was increased. To fix, I simply moved the increase sequence outside of the setTimeout method
+- Bug: game sequence not flashing last square in sequence
+- Fix: the problem was that when I delayed the round increase by 500ms so it aligned with the 'success' flash via a setTimeout, I also delayed the game sequence increase. This meant that the flashSequence function was called 500ms before the sequence was increased. To fix, I simply moved the increase sequence outside of the setTimeout method
 
         //increment current round by 1 and calls incrememntSequence
         function incrementRound() {
@@ -362,6 +362,10 @@ To make a clone of my project use the following steps:
 
             incrementSequence();
         }
+
+- Bug: Rewrote the code that changes the number of squares when the difficulty is changed; from using template literals containing the HTML, within the script.js file, to using standard HTML within the index.html file. However the function I used wasn't changing the squares being displayed.
+
+- Fix: A simple syntax error. After checking through the functions involved and confirming which parts were working, I discovered that the inner HTML of #difficulty-ul list items included a new line, so my IF statements which were checking if the inner HTML matched were all returning false and the rest of the code block wasn't running. 
 
 # credits
  
