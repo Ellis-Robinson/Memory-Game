@@ -373,7 +373,7 @@ function dontChangeDifficulty() {
 }
 //changes from medium to easy config if screen size below 315px
 function removeMediumConfig() {
-    if (screenSizeMdSm.matches && document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
+    if (screenSizeSm.matches && document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
         document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn"
         document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn hidden"
         addGameSquareEasyEventListener();
