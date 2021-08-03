@@ -87,15 +87,15 @@ function flashSequence() {
         document.querySelectorAll(".dropdown-item")[0].addEventListener("click", function () {
             clearTimeout(flashSequenceTimeOut);
             clearTimeout(checkFlashingTimeout);
-        })
+        });
         document.querySelectorAll(".dropdown-item")[1].addEventListener("click", function () {
             clearTimeout(flashSequenceTimeOut);
             clearTimeout(checkFlashingTimeout);
-        })
+        });
         document.querySelectorAll(".dropdown-item")[2].addEventListener("click", function () {
             clearTimeout(flashSequenceTimeOut);
             clearTimeout(checkFlashingTimeout);
-        })
+        });
 
         //runs isNotFlashing after sequence has stopped
         setTimeout(isNotFlashing, 1000 * (gameSequence.length + 1));
@@ -153,17 +153,17 @@ function flashSquareForSequence(i) {
     let difficultySetting = document.querySelector("#difficulty-setting");
 
     if (difficultySetting.innerHTML === "Easy") {
-        let gameSquare = document.querySelectorAll(".game-square-easy")
+        let gameSquare = document.querySelectorAll(".game-square-easy");
         gameSquare[i].className += " flash";
         gameSquareBlue();
         playPopSfx();
     } else if (difficultySetting.innerHTML === "Medium") {
-        let gameSquare = document.querySelectorAll(".game-square-medium")
+        let gameSquare = document.querySelectorAll(".game-square-medium");
         gameSquare[i].className += " flash";
         gameSquareBlue();
         playPopSfx();
     } else if (difficultySetting.innerHTML === "Hard") {
-        let gameSquare = document.querySelectorAll(".game-square-hard")
+        let gameSquare = document.querySelectorAll(".game-square-hard");
         gameSquare[i].className += " flash";
         gameSquareBlue();
         playPopSfx();
@@ -189,7 +189,7 @@ function createPlayerSequence() {
 }
 //if player sequence length is the same as game sequence length compare both, then clear player sequence
 function checkSequences() {
-    let lives = document.querySelector("#lives")
+    let lives = document.querySelector("#lives");
     if (playerSequence.length === gameSequence.length) {
         if (playerSequence.toString() === gameSequence.toString()) {
             //increments round and shows the next incrememnted sequence
@@ -355,22 +355,30 @@ function dontChangeDifficulty() {
 //changes from medium to easy config if screen size below 315px
 function removeMediumConfig() {
     if (window.matchMedia("(max-width: 315px)").matches && document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
-        document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn"
-        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn hidden"
+        document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn";
+        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn hidden";
         addGameSquareEasyEventListener();
         document.querySelector("#difficulty-setting").innerHTML = "Easy";
     }
 }
 //changes from hard to medium config if screen size below 750px
 function removeHardConfig() {
+
     if (window.matchMedia("(max-width: 750px)").matches && document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
 
         addGameSquareMediumEventListener();
-        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn"
-        document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn hidden"
+        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn";
+        document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn hidden";
         document.querySelector("#difficulty-setting").innerHTML = "Medium";
     }
 }
+
+function openModal() {
+    if (window.matchMedia("(max-width: 750px)").matches && document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
+        document.querySelector("#hidden-screen-too-small-button").click();
+    };
+}
+
 //creates event hadler for current 'easy' game squares
 function addGameSquareEasyEventListener() {
     gameSquare = document.querySelectorAll(".game-square-easy");
@@ -470,6 +478,7 @@ window.onload = function () {
             document.querySelector("#difficulty-setting").innerHTML = this.innerHTML;
         });
 
+    document.querySelector("#screen-too-small-change-difficulty-button").addEventListener("click", removeHardConfig);
     //changes difficulty if user selects yes in change difficulty modal
     document.querySelector("#change-difficulty-yes-button").addEventListener("click", changeDifficulty);
 
@@ -492,7 +501,7 @@ window.onload = function () {
     document.querySelector("#restart-no-button").addEventListener("click", flashSequence);
 
     //runs function if screensize is below 750px
-    window.matchMedia("(max-width: 750px)").addListener(removeHardConfig);
+    window.matchMedia("(max-width: 750px)").addListener(openModal); 
 
     //runs function if screensize is below 315px
     window.matchMedia("(max-width: 315px)").addListener(removeMediumConfig);

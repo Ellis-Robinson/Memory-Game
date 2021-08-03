@@ -328,6 +328,8 @@ The project was created using mobile first approach, utilising some built
 
 - Fix: A simple syntax error. After checking through the functions involved and confirming which parts were working, I discovered that the inner HTML of #difficulty-ul list items included a new line, so my IF statements which were checking if the inner HTML matched were all returning false and the rest of the code block wasn't running. 
 
+- Bug: If the window is minimalised and the screen size becomes too small, the difficulty layout changes automatically but doesnt reset the game. This causes an error.
+
 
 # Deployment
 
