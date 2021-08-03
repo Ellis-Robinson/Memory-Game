@@ -1,8 +1,5 @@
 <!--to do list
-- add google fonts
-- add hearts to lives (edit functions in JS so everything still works)
-- add countdown timer section
-- make links in read me open in new tab-->
+- add countdown timer section-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +17,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
-    <!-- <script src="assets/js/jquery-3.6.0.js"></script> -->
     <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -40,7 +36,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="staticBackdropLabel-rules">Rules of the game</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
 
@@ -76,7 +71,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="staticBackdropLabel-playagain">You're out of lives</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             Would you like to play again?
@@ -103,7 +97,6 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel-reset">Reset?</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         Are you sure you want to reset? this will end your current game.
@@ -124,8 +117,10 @@
             </button>
             <ul id="difficulty-ul" class="dropdown-menu">
                 <li class="dropdown-item" data-bs-toggle="modal" data-bs-target="#change-dfficulty-modal">Easy</li>
-                <li class="dropdown-item dif-md" data-bs-toggle="modal" data-bs-target="#change-dfficulty-modal">Medium</li>
-                <li class="dropdown-item dif-hard" data-bs-toggle="modal" data-bs-target="#change-dfficulty-modal">Hard</li>
+                <li class="dropdown-item dif-md" data-bs-toggle="modal" data-bs-target="#change-dfficulty-modal">Medium
+                </li>
+                <li class="dropdown-item dif-hard" data-bs-toggle="modal" data-bs-target="#change-dfficulty-modal">Hard
+                </li>
             </ul>
 
             <div class="modal fade" id="change-dfficulty-modal" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -134,7 +129,6 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="staticBackdropLabel-change-difficulty">Change Difficulty</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             Are you sure you want to change difficulty? this will end your current game.
@@ -167,8 +161,8 @@
     </div>
 
     <!--section with round and highscore-->
-    <div class="margin-bottom">
-        <div class="center margin-bottom">
+    <div>
+        <div class="center">
             <audio id="calm">
                 <source src="assets/sfx/calm.mp3" type="audio/mp3">
             </audio>
@@ -231,12 +225,12 @@
         </div>
     </div>
     <div class="center">
-        <span class="social-links"> <a class="social-link-color" href="https://www.facebook.com/" target="_blank" aria-label="link to facebook"><i
-                    class="fab fa-facebook-square"></i></a> </span>
-        <span class="social-links"> <a class="social-link-color" href="https://twitter.com/?lang=en-gb" target="_blank" aria-label="link to twitter"><i
-                    class="fab fa-twitter-square"></i></a> </span>
-        <span class="social-links"> <a class="social-link-color" href="https://www.instagram.com/" target="_blank" aria-label="link to instagram"><i
-                    class="fab fa-instagram-square"></i></a> </span>
+        <span class="social-links"> <a class="social-link-color" href="https://www.facebook.com/" target="_blank"
+                aria-label="link to facebook"><i class="fab fa-facebook-square"></i></a> </span>
+        <span class="social-links"> <a class="social-link-color" href="https://twitter.com/?lang=en-gb" target="_blank"
+                aria-label="link to twitter"><i class="fab fa-twitter-square"></i></a> </span>
+        <span class="social-links"> <a class="social-link-color" href="https://www.instagram.com/" target="_blank"
+                aria-label="link to instagram"><i class="fab fa-instagram-square"></i></a> </span>
     </div>
     <script src="assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

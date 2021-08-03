@@ -84,15 +84,14 @@ The page was kept simple and is responsive across all screen sizes u
 
 - Nav section
 
-    - 'Rules' button top left, opens a modal explaining how to play the game.
+    - 'Rules' button top left; On click, opens a modal explaining how to play the game, with a 'close' button at the bottom of the modal.
 
-    - 'Reset' button top centre, resets round to 0 and lives to 3.
-    - 'Difficulty' button top right, brings up drop down menu for different difficulty levels available.
-    - Larger 'Play' button, centred and just below other buttons. on click, disappears and starts the game sequence.
-        
-- Game section
+    - Larger 'Play!' button top centre; On click, is hidden and is replaced with 'Reset' button, 'Pay attention..' prompt appears just above game section and the game sequence starts after 2.5 seconds.
 
-    - Grid of dark blue squares; 2 x 2, 3 x 3 or 4 x 4 depending on difficulty. Each square flashes in accordance to the current game sequence and when clicked by the player.
+    - 'Reset' button top centre; is hidden before game starts and revealed when 'Start' button is clicked. On click the current round is paused and a modal is brought up asking the player if they are sure they want to restart. At the bottom right of the modal there are 'Yes' and 'No' buttons. if the player clicks the 'Yes' button the current game is over, the player is returned to round 0 and their lives are reset to 3. if the player clicks the 'No' button, the current round restarts and the player is shown the sequence again.
+
+    - 'Difficulty' button top right, brings up drop down menu for the different difficulty levels available, consisting of: 'Easy', 'Medium' and 'Hard'.
+    Each difficulty level, on click, will pause the current round and bring up a modal asking the player if they are sure they want to change the difficulty setting. At the bottom right of the modal there are 'Yes' and 'No' buttons. If the player clicks the 'Yes' button the current round is over, the number of game squares will change depending on difficulty selected, the round is reset to 0 and the lives are reset to 3. if the player clicks the 'No' button, the current round restarts and the player is shown the sequence again.
 
 - Score section
 
@@ -100,7 +99,12 @@ The page was kept simple and is responsive across all screen sizes u
 
     - High score indicator shows the highest round that has been achieved.
 
-    - Lives are shown in the from of red hearts.    
+    - Lives are shown in the from of red hearts, the game starts with 3.
+             
+- Game section
+
+    - Grid of dark blue squares; 2 x 2, 3 x 3 or 4 x 4 depending on difficulty. Each square flashes in accordance to the current game sequence and when clicked by the player.
+   
 
 ### Future features
 
@@ -212,7 +216,7 @@ The project was completed using google chrome browser so initial testi
 
 ## Responsiveness
 
-The project was created using mobile first approach and then adapted to display differently as the screen sizes increased. Google chrome developer tools was my main form of testing. I personally tested the game on several different devices, and the game was also sent out to multiple people using different devices and any minor display issues were corrected.
+The project was created using mobile first approach, utilising some built in responsivness from bootstrap elements such as buttons and columns. It was then adapted to display differently as the screen sizes increased. Google chrome developer tools were my main form of testing. This allowed me to check at which screen sizes the game displayed correctly and where it needed to be altered. The custom screen sizes I chose were 315px, 440px and 750px. At these brakes the game squares change size accordingly and the options for difficulty change as well.  I personally tested the game on several different devices, and the game was also sent out to multiple people using different devices and any minor display issues were corrected.
 
 ## Code validation
 

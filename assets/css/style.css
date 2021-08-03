@@ -27,7 +27,7 @@ body {
 }
 
 .function-buttons {
-  margin: 20px 0px;
+  margin-top: 20px;
 }
 
 .button-dark-blue {
@@ -79,10 +79,6 @@ body {
 .prompt {
   margin-bottom: 20px;
   font-size: xx-large;
-}
-
-.margin-bottom {
-  margin-bottom: 20px;
 }
 
 /*-----------------------------------game area*/
