@@ -28,6 +28,7 @@ body {
 
 .function-buttons {
   margin-top: 20px;
+  --bs-gutter-x: 0;
 }
 
 .button-dark-blue {
