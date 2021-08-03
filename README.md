@@ -52,15 +52,13 @@ I have created a simple memory game, where the user will be shown a
 
 # User stories
 
-1. I want a clear good looking landing page
+1. I want to understand the rules of the game.
 
-2. I want to understand the rules of the game.
+2. I want to know how well I am doing.
 
-3. I want to know how well I am doing.
+3. I want to be able to change the difficulty setting. 
 
-4. I want to be able to change the difficulty setting. 
-
-5. I want to keep track of my scores.
+4. I want to keep track of my scores.
 
 # Design
 
@@ -174,30 +172,25 @@ The project was completed using google chrome browser so initial testi
 
 ## User stories
 
-1. I want a clear good looking landing page
-
-    - The site is a single page and is designed to be clean and inviting
-    ![screenshot of site](docs/README-imgs/landing-page.png)
-
-2. I want to understand the rules of the game.
+1. I want to understand the rules of the game.
 
     - A clear button marked rules brings up a modal explaining the rules of the game 
     ![screenshot of rules button](docs/README-imgs/user-story-2-rules.png)
     ![screen shot of rules modal](docs/README-imgs/user-story-2-rules-modal.png)
 
-3. I want to know how well I am doing.
+2. I want to know how well I am doing.
 
     - The current round the user is on is displayed just below the game area.
 
     ![screenshot of current round](docs/README-imgs/user-story-3-round.png)
 
-4. I want to be able to change the difficulty setting
+3. I want to be able to change the difficulty setting
 
     - A button above the game area marked 'difficulty' displays the current difficulty level and brings up a drop down menu with available difficulties.
 
     ![screenshot of difficulty button](docs/README-imgs/user-story-4-difficulty.png)
 
-5. I want to keep track of my high score.
+4. I want to keep track of my high score.
 
     - The highest score achieved is displayed just below the game area, below the current round indicator.
 
@@ -238,43 +231,7 @@ The project was created using mobile first approach and then adapted 
 
 ![Java Script checker](docs/README-imgs/ss-JShint.png)
 
-# Deployment
-
-## Initial creation
-
-I created the repository using the following steps:
- 1. Logging into my [GitHub](https://github.com/Ellis-Robinson) account and clickng the green button near the top left of the page displaying the text **NEW.**
- 2. This took me to a page with the option to create a new repository. Under *repository template* I clicked on the *code institute* template.
- I chose a name for the repository suitable for the project and then clicked the *create repository* button.
- 3. I opened the new repository and clicked the green *gitpod* button to create a new workplace in Gitpod for writing and editing my code to develop the site.
-
-## Github Pages
-
-My project was deployed to GitHub pages using the following steps:
- 1. Logging in to my [GitHub](https://github.com/Ellis-Robinson) account and opening the relevant repository.
- 2. Click on the settings button, located just above the green **GITPOD** button.
- 3. In settings scroll down to the **GitHub Pages** section.
- 4. Under **source** click the dropdown button labelled **None** and select **Master Branch.**
- 5. The page will automatically refresh itself and after a few moments the published site link will be availible to click 
- on the **GitHub Page** section.
-
-## Forking the GitHub Repository
-
-Forking a repository enables us to make a copy of the original repository on our GitHub account so we can view it and make changes with out affecting the original work.
-This is done using the following steps:
- 1. Log in to [GitHub](https://github.com/Ellis-Robinson) account and select the relevant repository.
- 2. To the top right of the page there are three the buttons, the furthest right says **Fork.** Click on this button.
- 3. A copy of the original repository will now be in your account.
-
-## Making a Clone
-
-To make a clone of my project use the following steps:
- 1. Go to my [account](https://github.com/Ellis-Robinson) and locate relevant repository.
- 2. Next to the green **Gitpod** button, click on **CODE.**
- 3. Click on **Download Zip.**
- 4. Once dowloaded, you can extract the zip file's contents and save to a desktop and run the website locally.
-
-## Bus and Fixes
+## Bugs and Fixes
 
 - Bug: Game squares not flashing when clicked
 - Fix: Used for loop with eventListener to initiate flashSquare() function which changes the class of the game square that was clicked, then used timeOut function to change it back, creating the flash appearance.
@@ -366,6 +323,43 @@ To make a clone of my project use the following steps:
 - Bug: Rewrote the code that changes the number of squares when the difficulty is changed; from using template literals containing the HTML, within the script.js file, to using standard HTML within the index.html file. However the function I used wasn't changing the squares being displayed.
 
 - Fix: A simple syntax error. After checking through the functions involved and confirming which parts were working, I discovered that the inner HTML of #difficulty-ul list items included a new line, so my IF statements which were checking if the inner HTML matched were all returning false and the rest of the code block wasn't running. 
+
+
+# Deployment
+
+## Initial creation
+
+I created the repository using the following steps:
+ 1. Logging into my [GitHub](https://github.com/Ellis-Robinson) account and clickng the green button near the top left of the page displaying the text **NEW.**
+ 2. This took me to a page with the option to create a new repository. Under *repository template* I clicked on the *code institute* template.
+ I chose a name for the repository suitable for the project and then clicked the *create repository* button.
+ 3. I opened the new repository and clicked the green *gitpod* button to create a new workplace in Gitpod for writing and editing my code to develop the site.
+
+## Github Pages
+
+My project was deployed to GitHub pages using the following steps:
+ 1. Logging in to my [GitHub](https://github.com/Ellis-Robinson) account and opening the relevant repository.
+ 2. Click on the settings button, located just above the green **GITPOD** button.
+ 3. In settings scroll down to the **GitHub Pages** section.
+ 4. Under **source** click the dropdown button labelled **None** and select **Master Branch.**
+ 5. The page will automatically refresh itself and after a few moments the published site link will be availible to click 
+ on the **GitHub Page** section.
+
+## Forking the GitHub Repository
+
+Forking a repository enables us to make a copy of the original repository on our GitHub account so we can view it and make changes with out affecting the original work.
+This is done using the following steps:
+ 1. Log in to [GitHub](https://github.com/Ellis-Robinson) account and select the relevant repository.
+ 2. To the top right of the page there are three the buttons, the furthest right says **Fork.** Click on this button.
+ 3. A copy of the original repository will now be in your account.
+
+## Making a Clone
+
+To make a clone of my project use the following steps:
+ 1. Go to my [account](https://github.com/Ellis-Robinson) and locate relevant repository.
+ 2. Next to the green **Gitpod** button, click on **CODE.**
+ 3. Click on **Download Zip.**
+ 4. Once dowloaded, you can extract the zip file's contents and save to a desktop and run the website locally.
 
 # credits
  
