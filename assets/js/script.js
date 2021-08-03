@@ -373,7 +373,7 @@ function removeHardConfig() {
     }
 }
 
-function openModal() {
+function showScreenTooSmallModal() {
     if (window.matchMedia("(max-width: 750px)").matches && document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
         document.querySelector("#hidden-screen-too-small-button").click();
     };
@@ -501,7 +501,7 @@ window.onload = function () {
     document.querySelector("#restart-no-button").addEventListener("click", flashSequence);
 
     //runs function if screensize is below 750px
-    window.matchMedia("(max-width: 750px)").addListener(openModal); 
+    window.matchMedia("(max-width: 750px)").addListener(showScreenTooSmallModal); 
 
     //runs function if screensize is below 315px
     window.matchMedia("(max-width: 315px)").addListener(removeMediumConfig);
