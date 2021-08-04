@@ -103,6 +103,8 @@ The page was kept simple and is responsive across all screen sizes u
 - Game section
 
     - Grid of dark blue squares; 2 x 2, 3 x 3 or 4 x 4 depending on difficulty. Each square flashes in accordance to the current game sequence and when clicked by the player.
+    
+    - Under the game square area there are three social media logos that link to their respective websites.
    
 
 ### Future features
