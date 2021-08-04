@@ -474,7 +474,6 @@ function toggleMusic() {
     }
 }
 //------------------------event listeners----------------
-
 window.onload = function () {
     let difficultyLevel = document.querySelector("#difficulty-ul");
 
