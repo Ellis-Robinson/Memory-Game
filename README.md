@@ -38,6 +38,7 @@ I have created a simple memory game, where the user will be shown a
     - [Feature Testing](#feature-testing)
     - [Responsiveness](#responsiveness)
     - [Code Validation](#code-validation)
+    - [Bugs and Fixe](#bugs-and-fixes)
 
 * [Deployment](#deployment)
 
@@ -45,8 +46,6 @@ I have created a simple memory game, where the user will be shown a
     - [Github Pages](#github-pages)
     - [Forking the Github Repository](forking-the-github-repository)
     - [Making a Clone](#making-a-clone)
-
-* [Bugs and Fixe](#bugs-and-fixes)
 
 * [Credits](#credits)
 
@@ -324,11 +323,23 @@ The project was created using mobile first approach, utilising some built
             incrementSequence();
         }
 
+
+- Bug: If the window is minimalised and the screen size becomes too small, the difficulty layout changes automatically but doesnt reset the game. This causes an error.
+
+- Fix: Added a modal that displays when the screen size drops too small for the current difficulty advising the player to make the screen size larger or to change the difficulty via the button at the bottom of the modal. 
+
+        function showScreenTooSmallModal() {
+            if (window.matchMedia("(max-width: 750px)").matches && document.querySelector("#game-area-hard").style.display === "block") {
+                document.querySelector("#hidden-screen-too-small-button").click();
+            }
+            if (window.matchMedia("(max-width: 315px)").matches && document.querySelector("#game-area-medium").style.display === "block") {
+                document.querySelector("#hidden-screen-too-small-button").click();
+            }
+        }
+
 - Bug: Rewrote the code that changes the number of squares when the difficulty is changed; from using template literals containing the HTML, within the script.js file, to using standard HTML within the index.html file. However the function I used wasn't changing the squares being displayed.
 
 - Fix: A simple syntax error. After checking through the functions involved and confirming which parts were working, I discovered that the inner HTML of #difficulty-ul list items included a new line, so my IF statements which were checking if the inner HTML matched were all returning false and the rest of the code block wasn't running. 
-
-- Bug: If the window is minimalised and the screen size becomes too small, the difficulty layout changes automatically but doesnt reset the game. This causes an error.
 
 
 # Deployment

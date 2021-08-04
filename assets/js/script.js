@@ -8,9 +8,6 @@ let gameSquare = [];
 
 let sequenceFlashing = false;
 
-
-//---------------------functions
-
 // starts game, resets lives
 function startGame() {
 
@@ -33,8 +30,6 @@ function createSequence() {
 
         gameSequence.push(randomNums);
     }
-
-
 }
 
 //returns game squares to blue after clicked
@@ -55,8 +50,6 @@ function removeCorrectAndFailFlash() {
         }
     }, 200);
 }
-
-
 
 //targets game squares and flashes them in order of game sequence
 function flashSequence() {
@@ -111,11 +104,11 @@ function flashSequence() {
 //disableds game squares if sequence is flashing, adds event listeners if sequence isnt flashing
 function checkIfFlashing() {
     if (sequenceFlashing == true) {
-        if (document.querySelector("#game-area-easy").className === "animate__animated animate__zoomIn") {
+        if (document.querySelector("#game-area-easy").style.display === "block") {
             removeGameSquareEasyEventListener();
-        } else if (document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
+        } else if (document.querySelector("#game-area-medium").style.display === "block") {
             removeGameSquareMediumEventListener();
-        } else if (document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
+        } else if (document.querySelector("#game-area-hard").style.display === "block") {
             removeGameSquareHardEventListener();
         }
         setTimeout(function () {
@@ -130,11 +123,11 @@ function checkIfFlashing() {
         addGameSquareEasyEventListener();
         playerPrompt.innerHTML = "Go!";
         playerPrompt.className = "center animate__flash prompt";
-        if (document.querySelector("#game-area-easy").className === "animate__animated animate__zoomIn") {
+        if (document.querySelector("#game-area-easy").style.display === "block") {
             addGameSquareEasyEventListener();
-        } else if (document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
+        } else if (document.querySelector("#game-area-medium").style.display === "block") {
             addGameSquareMediumEventListener();
-        } else if (document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
+        } else if (document.querySelector("#game-area-hard").style.display === "block") {
             addGameSquareHardEventListener();
         }
     }
@@ -168,25 +161,26 @@ function flashSquareForSequence(i) {
         gameSquareBlue();
         playPopSfx();
     }
-
 }
-
 //flashes selected square
 function flashSquare() {
     event.currentTarget.className += " flash";
     gameSquareBlue();
 }
+
 //plays popping sfx
 function playPopSfx() {
     let pop = document.querySelector("#pop");
     pop.play();
 }
+
 //adds the integer of selected game square to player sequence array
 function createPlayerSequence() {
     // '+' turns dataset.square from a string into an intager
     let squareNumber = +event.currentTarget.dataset.square;
     playerSequence.push(squareNumber);
 }
+
 //if player sequence length is the same as game sequence length compare both, then clear player sequence
 function checkSequences() {
     let lives = document.querySelector("#lives");
@@ -213,6 +207,7 @@ function checkSequences() {
         }
     }
 }
+
 //plays 'correct' sfx and flashes squares green
 function correct() {
     document.querySelector("#correct").play();
@@ -228,6 +223,7 @@ function correct() {
         }
     }, 600);
 }
+
 //plays 'incorrect' music and flashes squares red
 function fail() {
     setTimeout(function () {
@@ -240,17 +236,20 @@ function fail() {
         }
     }, 500);
 }
+
 // generates 1 random number between 1 and max number of game squares, adds to current sequence.
 function incrementSequence() {
     let randomNum = Math.floor(Math.random() * gameSquare.length + 1);
 
     gameSequence.push(randomNum);
 }
+
 //increment current round by 1 and calls incrememntSequence
 function incrementRound() {
     let currentRound = document.querySelector("#currentRound");
 
     let highScore = document.querySelector("#highScore");
+
     //delays function to align with green 'correct' flash
     setTimeout(function () {
         currentRound.innerHTML++;
@@ -265,6 +264,7 @@ function incrementRound() {
 
     incrementSequence();
 }
+
 //increments lives if player reaches round 5 and 10
 function incrementLives() {
     let oneLife = document.createElement("I");
@@ -273,6 +273,7 @@ function incrementLives() {
 
     document.querySelector("#lives").appendChild(oneLife);
 }
+
 //decrements lives
 function decrementLives() {
     let lives = document.querySelector("#lives");
@@ -281,11 +282,13 @@ function decrementLives() {
         lives.removeChild(lives.lastElementChild);
     }, 500);
 }
+
 //bring up play again modal 
 function clickPlayAgainButton() {
 
     document.querySelector("#play-again-hidden-btn").click();
 }
+
 //resets game sequence/player sequence/round/lives
 function reset() {
     gameSequence = [];
@@ -297,6 +300,7 @@ function reset() {
     document.querySelector("#reset-button-div").className = "col-3 center hidden absolute";
     document.querySelector("#player-prompt").className = "center hidden";
 }
+
 //resets lives to 3
 function resetLives() {
     document.querySelector("#lives").innerHTML = "";
@@ -307,32 +311,32 @@ function resetLives() {
 //reconfigurs game area for current difficulty
 function changeDifficulty() {
     reset();
+
     let difficultySetting = document.querySelector("#difficulty-setting");
-
-    if (difficultySetting.innerHTML === "Medium") {
-        //creates new game section layout with 9 squares
-        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn";
-        document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn hidden";
-        document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn hidden";
-
-        addGameSquareMediumEventListener();
-
-    }
 
     if (difficultySetting.innerHTML === "Easy") {
         //creates new game section layout with 4 squares
-        document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn";
-        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn hidden";
-        document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn hidden";
+        document.querySelector("#game-area-easy").style.display = "block";
+        document.querySelector("#game-area-medium").style.display = "none";
+        document.querySelector("#game-area-hard").style.display = "none";
 
         addGameSquareEasyEventListener();
     }
 
+    if (difficultySetting.innerHTML === "Medium") {
+        //creates new game section layout with 9 squares
+        document.querySelector("#game-area-medium").style.display = "block";
+        document.querySelector("#game-area-easy").style.display = "none";
+        document.querySelector("#game-area-hard").style.display = "none";
+
+        addGameSquareMediumEventListener();
+    }
+
     if (difficultySetting.innerHTML === "Hard") {
         //creates new game section layout with 16 squares
-        document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn";
-        document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn hidden";
-        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn hidden";
+        document.querySelector("#game-area-hard").style.display = "block";
+        document.querySelector("#game-area-medium").style.display = "none";
+        document.querySelector("#game-area-easy").style.display = "none";
 
         addGameSquareHardEventListener();
     }
@@ -344,41 +348,50 @@ function dontChangeDifficulty() {
     }
     let difficultySetting = document.querySelector("#difficulty-setting");
 
-    if (document.querySelector("#game-area-easy").className === "animate__animated animate__zoomIn") {
+    if (document.querySelector("#game-area-easy").style.display === "block") {
         difficultySetting.innerHTML = "Easy";
-    } else if (document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
+    } else if (document.querySelector("#game-area-medium").style.display === "block") {
         difficultySetting.innerHTML = "Medium";
-    } else if (document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
+    } else if (document.querySelector("#game-area-hard").style.display === "block") {
         difficultySetting.innerHTML = "Hard";
     }
 }
-//changes from medium to easy config if screen size below 315px
-function removeMediumConfig() {
-    if (window.matchMedia("(max-width: 315px)").matches && document.querySelector("#game-area-medium").className === "animate__animated animate__zoomIn") {
-        document.querySelector("#game-area-easy").className = "animate__animated animate__zoomIn";
-        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn hidden";
+//changes from hard to medium config if screen size below 750px
+//changes from medium easy config if screen size below 315px
+function changeToSmallerDifficultyConfiguration() {
+
+    if (window.matchMedia("(max-width: 750px)").matches && document.querySelector("#game-area-hard").style.display === "block") {
+
+        addGameSquareMediumEventListener();
+        document.querySelector("#game-area-medium").style.display = "block";
+        document.querySelector("#game-area-hard").style.display = "none";
+        document.querySelector("#difficulty-setting").innerHTML = "Medium";
+    }
+    if (window.matchMedia("(max-width: 315px)").matches && document.querySelector("#game-area-medium").style.display === "block") {
+        document.querySelector("#game-area-easy").style.display = "block";
+        document.querySelector("#game-area-medium").style.display = "none";
         addGameSquareEasyEventListener();
         document.querySelector("#difficulty-setting").innerHTML = "Easy";
     }
 }
-//changes from hard to medium config if screen size below 750px
-function removeHardConfig() {
-
-    if (window.matchMedia("(max-width: 750px)").matches && document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
-
-        addGameSquareMediumEventListener();
-        document.querySelector("#game-area-medium").className = "animate__animated animate__zoomIn";
-        document.querySelector("#game-area-hard").className = "animate__animated animate__zoomIn hidden";
-        document.querySelector("#difficulty-setting").innerHTML = "Medium";
+//Shows modal telling player screen is too small for current difficulty setting
+function showScreenTooSmallModal() {
+    if (window.matchMedia("(max-width: 750px)").matches && document.querySelector("#game-area-hard").style.display === "block") {
+        document.querySelector("#hidden-screen-too-small-button").click();
+    }
+    if (window.matchMedia("(max-width: 315px)").matches && document.querySelector("#game-area-medium").style.display === "block") {
+        document.querySelector("#hidden-screen-too-small-button").click();
     }
 }
-
-function showScreenTooSmallModal() {
-    if (window.matchMedia("(max-width: 750px)").matches && document.querySelector("#game-area-hard").className === "animate__animated animate__zoomIn") {
+//hides modal telling player screen is too small for current difficulty setting
+function hideScreenTooSmallModal() {
+    if (window.matchMedia("(min-width: 750px)").matches && document.querySelector("#screen-too-small-modal").style.display === "block") {
         document.querySelector("#hidden-screen-too-small-button").click();
-    };
+    }
+    if (window.matchMedia("(min-width: 315px)").matches && document.querySelector("#screen-too-small-modal").style.display === "block") {
+        document.querySelector("#hidden-screen-too-small-button").click();
+    }
 }
-
 //creates event hadler for current 'easy' game squares
 function addGameSquareEasyEventListener() {
     gameSquare = document.querySelectorAll(".game-square-easy");
@@ -478,32 +491,38 @@ window.onload = function () {
             document.querySelector("#difficulty-setting").innerHTML = this.innerHTML;
         });
 
-    document.querySelector("#screen-too-small-change-difficulty-button").addEventListener("click", removeHardConfig);
+    document.querySelector("#screen-too-small-change-difficulty-button").addEventListener("click", changeToSmallerDifficultyConfiguration);
+    
     //changes difficulty if user selects yes in change difficulty modal
     document.querySelector("#change-difficulty-yes-button").addEventListener("click", changeDifficulty);
-
+    
     //keeps difficulty the same if user selects no in change difficulty modal
     document.querySelector("#change-difficulty-no-button").addEventListener("click", dontChangeDifficulty);
-
+    
     //listening for if start button is clicked
     document.querySelector("#start-button").addEventListener("click", startGame);
-
+    
     //if play again button is clicked game will start again
     document.querySelector("#play-again-modal-btn").addEventListener("click", startGame);
-
+    
     //clears stats if "no thanks" is selected at end of game
     document.querySelector("#no-thanks-modal-btn").addEventListener("click", reset);
-
+    
     //clears stats if restart yes is clicked
     document.querySelector("#restart-yes-button").addEventListener("click", reset);
-
+    
     //flashes sequence if player chose to not restart
     document.querySelector("#restart-no-button").addEventListener("click", flashSequence);
-
+    
     //runs function if screensize is below 750px
-    window.matchMedia("(max-width: 750px)").addListener(showScreenTooSmallModal); 
-
+    window.matchMedia("(max-width: 750px)").addListener(showScreenTooSmallModal);
+    
+    //runs function if screensize is above 750px
+    window.matchMedia("(min-width: 750px)").addListener(hideScreenTooSmallModal);
+    
     //runs function if screensize is below 315px
-    window.matchMedia("(max-width: 315px)").addListener(removeMediumConfig);
-
+    window.matchMedia("(max-width: 315px)").addListener(showScreenTooSmallModal);
+    
+    //runs function if screensize is above 315px
+    window.matchMedia("(min-width: 315px)").addListener(hideScreenTooSmallModal);
 };
