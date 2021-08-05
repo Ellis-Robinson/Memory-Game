@@ -61,7 +61,7 @@ I have created a simple memory game, where the user will be shown a
 
 # Design
 
-I wanted a simple, elegant look that was light and inviting. with it being a memory game an uncluttered page was important, to avoid distractions. This was achieved through the use of light colours and a minimalistic approach. A few clear buttons for; Starting the game (which disappears once the game starts); The rules, resetting the game and changing the difficulty are laid out across the top. A clear game area takes up the centre of the screen and at the bottom are the players score and lives.
+I wanted a simple, elegant look that was light and inviting. With it being a memory game an uncluttered page was important, to avoid distractions. This was achieved through the use of light colours and a minimalistic approach. A few clear buttons for; Starting the game (which disappears once the game starts); The rules, resetting the game and changing the difficulty are laid out across the top. A clear game area takes up the centre of the screen and at the bottom are the players score and lives.
 
 ## Wireframes
 
